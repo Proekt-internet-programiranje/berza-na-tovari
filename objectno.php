@@ -1,4 +1,8 @@
+
 <?php session_start();
+
+//cika carr
+
 if(isset($_SESSION["brojac"]))
 $zapisani = $_SESSION["brojac"]; ?>
 <html>
