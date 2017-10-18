@@ -1,6 +1,10 @@
 
 <?php session_start();
 
+//cika carr
+//weed
+//zbrceeeeed
+//////////////cikaaa
 if(isset($_SESSION["brojac"]))
 $zapisani = $_SESSION["brojac"]; ?>
 <html>
