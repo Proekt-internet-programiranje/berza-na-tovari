@@ -3,6 +3,7 @@
 
 //cika carr
 //weed
+//zbrceeeeed
 if(isset($_SESSION["brojac"]))
 $zapisani = $_SESSION["brojac"]; ?>
 <html>
