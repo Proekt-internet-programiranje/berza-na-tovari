@@ -1,7 +1,4 @@
 <?php
-
-//DA GO PUSHNAM LI
-//koza les
 /**
  * CodeIgniter
  *
