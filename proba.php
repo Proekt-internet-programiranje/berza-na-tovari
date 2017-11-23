@@ -49,10 +49,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   if (empty($_POST["telephone"])) {
-    $telephone = "";
+    $telephoneerror = "Required";
   } else {    
     $telephone = test_input($_POST["telephone"]);
-    $telephonenew=preg_match('/^\(d)\d{9}/', $telephone);
+    if(preg_match('/\(\b\d{3}\)?\d{3}[-.]?\d{4}\b/', $telephone)){
+        $telephone = test_input($_POST["telephone"]);
+        $telephoneerror = "";
+    }
+      else $telephoneerror = "Format is wrong";
   }
 
   if (empty($_POST["gender"])) {
@@ -83,6 +87,7 @@ function test_input($data) {
   <span class="error"><?php echo $websiteErr;?></span>
   <br><br>
   telephone: <input type="text" name="telephone" ><?php echo $telephone;?>
+  <span class="error">* <?php echo $telephoneerror;?></span>
   <br><br>
   Gender:
   <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
@@ -100,7 +105,7 @@ echo $email;
 echo "<br>";
 echo $website;
 echo "<br>";
-echo $telephonenew;
+echo $telephone;
 echo "<br>";
 echo $gender;
 ?>
