@@ -1,3 +1,4 @@
+<center>DA MI GO ISCICATE I DVAJCATA</center>
 <?php
 
 // Location to the Paths config file.
