@@ -1,113 +1,69 @@
-<?php namespace Config;
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/*
+| -------------------------------------------------------------------
+| DATABASE CONNECTIVITY SETTINGS
+| -------------------------------------------------------------------
+| This file will contain the settings needed to access your database.
+|
+| For complete instructions please consult the 'Database Connection'
+| page of the User Guide.
+|
+| -------------------------------------------------------------------
+| EXPLANATION OF VARIABLES
+| -------------------------------------------------------------------
+|
+|	['hostname'] The hostname of your database server.
+|	['username'] The username used to connect to the database
+|	['password'] The password used to connect to the database
+|	['database'] The name of the database you want to connect to
+|	['dbdriver'] The database type. ie: mysql.  Currently supported:
+				 mysql, mysqli, postgre, odbc, mssql, sqlite, oci8
+|	['dbprefix'] You can add an optional prefix, which will be added
+|				 to the table name when using the  Active Record class
+|	['pconnect'] TRUE/FALSE - Whether to use a persistent connection
+|	['db_debug'] TRUE/FALSE - Whether database errors should be displayed.
+|	['cache_on'] TRUE/FALSE - Enables/disables query caching
+|	['cachedir'] The path to the folder where cache files should be stored
+|	['char_set'] The character set used in communicating with the database
+|	['dbcollat'] The character collation used in communicating with the database
+|				 NOTE: For MySQL and MySQLi databases, this setting is only used
+| 				 as a backup if your server is running PHP < 5.2.3 or MySQL < 5.0.7
+|				 (and in table creation queries made with DB Forge).
+| 				 There is an incompatibility in PHP with mysql_real_escape_string() which
+| 				 can make your site vulnerable to SQL injection if you are using a
+| 				 multi-byte character set and are running versions lower than these.
+| 				 Sites using Latin-1 or UTF-8 database character set and collation are unaffected.
+|	['swap_pre'] A default table prefix that should be swapped with the dbprefix
+|	['autoinit'] Whether or not to automatically initialize the database.
+|	['stricton'] TRUE/FALSE - forces 'Strict Mode' connections
+|							- good for ensuring strict SQL while developing
+|
+| The $active_group variable lets you choose which connection group to
+| make active.  By default there is only one group (the 'default' group).
+|
+| The $active_record variables lets you determine whether or not to load
+| the active record class
+*/
 
-/**
- * Database Configuration
- *
- * @package Config
- */
-class Database extends \CodeIgniter\Database\Config
-{
-	/**
-	 * The directory that holds the Migrations
-	 * and Seeds directories.
-	 * @var string
-	 */
-	public $filesPath = APPPATH.'Database/';
+$active_group = 'default';
+$active_record = TRUE;
 
-	/**
-	 * Lets you choose which connection group to
-	 * use if no other is specified.
-	 *
-	 * @var string
-	 */
-	public $defaultGroup = 'default';
-
-	/**
-	 * The default database connection.
-	 *
-	 * @var array
-	 */
-	public $default = [
-		'DSN'          => '',
-		'hostname'     => 'localhost',
-		'username'     => '',
-		'password'     => '',
-		'database'     => '',
-		'DBDriver'     => 'MySQLi',
-		'DBPrefix'     => '',
-		'pConnect'     => false,
-		'DBDebug'     => (ENVIRONMENT !== 'production'),
-		'cacheOn'     => false,
-		'cacheDir'     => '',
-		'charset'      => 'utf8',
-		'DBCollat'     => 'utf8_general_ci',
-		'swapPre'      => '',
-		'encrypt'      => false,
-		'compress'     => false,
-		'strictOn'     => false,
-		'failover'     => [],
-		'port'         => 3306
-	];
-
-	/**
-	 * This database connection is used when
-	 * running PHPUnit database tests.
-	 *
-	 * @var array
-	 */
-	public $tests = [
-		'DSN'          => '',
-		'hostname'     => '127.0.0.1',
-		'username'     => '',
-		'password'     => '',
-		'database'     => '',
-		'DBDriver'     => '',
-		'DBPrefix'     => 'db_',  // Needed to ensure we're working correctly with prefixes live. DO NOT REMOVE.
-		'pConnect'     => false,
-		'DBDebug'     => (ENVIRONMENT !== 'production'),
-		'cacheOn'     => false,
-		'cacheDir'     => '',
-		'charset'      => 'utf8',
-		'DBCollat'     => 'utf8_general_ci',
-		'swapPre'      => '',
-		'encrypt'      => false,
-		'compress'     => false,
-		'strictOn'     => false,
-		'failover'     => [],
-		'port'         => 3306
-	];
-
-	//--------------------------------------------------------------------
-
-	public function __construct()
-	{
-	    parent::__construct();
-
-		// Ensure that we always set the database group to 'tests' if
-		// we are currently running an automated test suite, so that
-		// we don't overwrite live data on accident.
-		if (ENVIRONMENT == 'testing')
-		{
-			$this->defaultGroup = 'tests';
-
-			// Under Travis-CI, we can set an ENV var named 'DB_GROUP'
-			// so that we can test against multiple databases.
-			if ($group = getenv('DB'))
-			{
-				if (is_file(TESTPATH.'travis/Database.php'))
-				{
-					require TESTPATH.'travis/Database.php';
-
-					if ( ! empty($dbconfig) && array_key_exists($group, $dbconfig))
-					{
-						$this->tests = $dbconfig[$group];
-					}
-				}
-			}
-		}
-	}
-
-	//--------------------------------------------------------------------
+$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'root';
+$db['default']['password'] = '';
+$db['default']['database'] = 'cias';
+$db['default']['dbdriver'] = 'mysqli';
+$db['default']['dbprefix'] = '';
+$db['default']['pconnect'] = TRUE;
+$db['default']['db_debug'] = TRUE;
+$db['default']['cache_on'] = FALSE;
+$db['default']['cachedir'] = '';
+$db['default']['char_set'] = 'utf8';
+$db['default']['dbcollat'] = 'utf8_general_ci';
+$db['default']['swap_pre'] = '';
+$db['default']['autoinit'] = TRUE;
+$db['default']['stricton'] = FALSE;
 
 
-}
+/* End of file database.php */
+/* Location: ./application/config/database.php */

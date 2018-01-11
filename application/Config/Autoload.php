@@ -1,89 +1,116 @@
-<?php namespace Config;
+<?php if(!defined('BASEPATH')) exit('No direct script access allowed');
+/*
+| -------------------------------------------------------------------
+| AUTO-LOADER
+| -------------------------------------------------------------------
+| This file specifies which systems should be loaded by default.
+|
+| In order to keep the framework as light-weight as possible only the
+| absolute minimal resources are loaded by default. For example,
+| the database is not connected to automatically since no assumption
+| is made regarding whether you intend to use it.  This file lets
+| you globally define which systems you would like loaded with every
+| request.
+|
+| -------------------------------------------------------------------
+| Instructions
+| -------------------------------------------------------------------
+|
+| These are the things you can load automatically:
+|
+| 1. Packages
+| 2. Libraries
+| 3. Helper files
+| 4. Custom config files
+| 5. Language files
+| 6. Models
+|
+*/
 
-require BASEPATH.'Config/AutoloadConfig.php';
+/*
+| -------------------------------------------------------------------
+|  Auto-load Packges
+| -------------------------------------------------------------------
+| Prototype:
+|
+|  $autoload['packages'] = array(APPPATH.'third_party', '/usr/local/shared');
+|
+*/
 
-/**
- * -------------------------------------------------------------------
- * AUTO-LOADER
- * -------------------------------------------------------------------
- * This file defines the namespaces and class maps so the Autoloader
- * can find the files as needed.
- */
-class Autoload extends \CodeIgniter\Config\AutoloadConfig
-{
-	public $psr4 = [];
+$autoload['packages'] = array();
 
-	public $classmap = [];
 
-	//--------------------------------------------------------------------
+/*
+| -------------------------------------------------------------------
+|  Auto-load Libraries
+| -------------------------------------------------------------------
+| These are the classes located in the system/libraries folder
+| or in your application/libraries folder.
+|
+| Prototype:
+|
+|	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
+*/
 
-	/**
-	 * Collects the application-specific autoload settings and merges
-	 * them with the framework's required settings.
-	 *
-	 * NOTE: If you use an identical key in $psr4 or $classmap, then
-	 * the values in this file will overwrite the framework's values.
-	 */
-	public function __construct()
-	{
-		parent::__construct();
+$autoload['libraries'] = array('database', 'session');
 
-		/**
-		 * -------------------------------------------------------------------
-		 * Namespaces
-		 * -------------------------------------------------------------------
-		 * This maps the locations of any namespaces in your application
-		 * to their location on the file system. These are used by the
-		 * Autoloader to locate files the first time they have been instantiated.
-		 *
-		 * The '/application' and '/system' directories are already mapped for
-		 * you. You may change the name of the 'App' namespace if you wish,
-		 * but this should be done prior to creating any namespaced classes,
-		 * else you will need to modify all of those classes for this to work.
-		 *
-		 * DO NOT change the name of the CodeIgniter namespace or your application
-		 * WILL break. *
-		 * Prototype:
-		 *
-		 *   $Config['psr4'] = [
-		 *       'CodeIgniter' => SYSPATH
-		 *   `];
-		 */
-		$psr4 = [
-			'Config'                     => APPPATH.'Config',
-			APP_NAMESPACE                => APPPATH,			    // For custom namespace
-			'App'                        => APPPATH,			    // To ensure filters, etc still found,
-			'Tests\Support'              => TESTPATH.'_support',    // So custom migrations can run during testing
-		];
 
-		/**
-		 * -------------------------------------------------------------------
-		 * Class Map
-		 * -------------------------------------------------------------------
-		 * The class map provides a map of class names and their exact
-		 * location on the drive. Classes loaded in this manner will have
-		 * slightly faster performance because they will not have to be
-		 * searched for within one or more directories as they would if they
-		 * were being autoloaded through a namespace.
-		 *
-		 * Prototype:
-		 *
-		 *   $Config['classmap'] = [
-		 *       'MyClass'   => '/path/to/class/file.php'
-		 *   ];
-		 */
-		$classmap = [];
+/*
+| -------------------------------------------------------------------
+|  Auto-load Helper Files
+| -------------------------------------------------------------------
+| Prototype:
+|
+|	$autoload['helper'] = array('url', 'file');
+*/
 
-		//--------------------------------------------------------------------
-		// Do Not Edit Below This Line
-		//--------------------------------------------------------------------
+$autoload['helper'] = array('url', 'file','cias_helper');
 
-		$this->psr4 = array_merge($this->psr4, $psr4);
-		$this->classmap = array_merge($this->classmap, $classmap);
 
-		unset($psr4, $classmap);
-	}
+/*
+| -------------------------------------------------------------------
+|  Auto-load Config files
+| -------------------------------------------------------------------
+| Prototype:
+|
+|	$autoload['config'] = array('config1', 'config2');
+|
+| NOTE: This item is intended for use ONLY if you have created custom
+| config files.  Otherwise, leave it blank.
+|
+*/
 
-	//--------------------------------------------------------------------
+$autoload['config'] = array();
 
-}
+
+/*
+| -------------------------------------------------------------------
+|  Auto-load Language files
+| -------------------------------------------------------------------
+| Prototype:
+|
+|	$autoload['language'] = array('lang1', 'lang2');
+|
+| NOTE: Do not include the "_lang" part of your file.  For example
+| "codeigniter_lang.php" would be referenced as array('codeigniter');
+|
+*/
+
+$autoload['language'] = array();
+
+
+/*
+| -------------------------------------------------------------------
+|  Auto-load Models
+| -------------------------------------------------------------------
+| Prototype:
+|
+|	$autoload['model'] = array('model1', 'model2');
+|
+*/
+
+$autoload['model'] = array();
+
+
+/* End of file autoload.php */
+/* Location: ./application/config/autoload.php */

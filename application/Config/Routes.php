@@ -1,95 +1,75 @@
-<?php namespace Config;
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/*
+| -------------------------------------------------------------------------
+| URI ROUTING
+| -------------------------------------------------------------------------
+| This file lets you re-map URI requests to specific controller functions.
+|
+| Typically there is a one-to-one relationship between a URL string
+| and its corresponding controller class/method. The segments in a
+| URL normally follow this pattern:
+|
+|	example.com/class/method/id/
+|
+| In some instances, however, you may want to remap this relationship
+| so that a different class/function is called than the one
+| corresponding to the URL.
+|
+| Please see the user guide for complete details:
+|
+|	http://codeigniter.com/user_guide/general/routing.html
+|
+| -------------------------------------------------------------------------
+| RESERVED ROUTES
+| -------------------------------------------------------------------------
+|
+| There area two reserved routes:
+|
+|	$route['default_controller'] = 'welcome';
+|
+| This route indicates which controller class should be loaded if the
+| URI contains no data. In the above example, the "welcome" class
+| would be loaded.
+|
+|	$route['404_override'] = 'errors/page_missing';
+|
+| This route will tell the Router what URI segments to use if those provided
+| in the URL cannot be matched to a valid route.
+|
+*/
 
-/**
- * --------------------------------------------------------------------
- * URI Routing
- * --------------------------------------------------------------------
- * This file lets you re-map URI requests to specific controller functions.
- *
- * Typically there is a one-to-one relationship between a URL string
- * and its corresponding controller class/method. The segments in a
- * URL normally follow this pattern:
- *
- *    example.com/class/method/id
- *
- * In some instances, however, you may want to remap this relationship
- * so that a different class/function is called than the one
- * corresponding to the URL.
- *
- */
+$route['default_controller'] = "login";
+$route['404_override'] = 'error';
 
-// Create a new instance of our RouteCollection class.
-$routes = Services::routes(true);
 
-// Load the system's routing file first, so that the app and ENVIRONMENT
-// can override as needed.
-if (file_exists(BASEPATH.'Config/Routes.php'))
-{
-	require BASEPATH.'Config/Routes.php';
-}
+/*********** USER DEFINED ROUTES *******************/
 
-/**
- * --------------------------------------------------------------------
- * Router Setup
- * --------------------------------------------------------------------
- * The RouteCollection object allows you to modify the way that the
- * Router works, by acting as a holder for it's configuration settings.
- * The following methods can be called on the object to modify
- * the default operations.
- *
- *    $routes->defaultNamespace()
- *
- * Modifies the namespace that is added to a controller if it doesn't
- * already have one. By default this is the global namespace (\).
- *
- *    $routes->defaultController()
- *
- * Changes the name of the class used as a controller when the route
- * points to a folder instead of a class.
- *
- *    $routes->defaultMethod()
- *
- * Assigns the method inside the controller that is ran when the
- * Router is unable to determine the appropriate method to run.
- *
- *    $routes->setAutoRoute()
- *
- * Determines whether the Router will attempt to match URIs to
- * Controllers when no specific route has been defined. If false,
- * only routes that have been defined here will be available.
- */
-$routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
-$routes->setDefaultMethod('index');
-$routes->setTranslateURIDashes(false);
-$routes->set404Override();
-$routes->setAutoRoute(true);
-$routes->discoverLocal(false);
+$route['loginMe'] = 'login/loginMe';
+$route['dashboard'] = 'user';
+$route['logout'] = 'user/logout';
+$route['userListing'] = 'user/userListing';
+$route['userListing/(:num)'] = "user/userListing/$1";
+$route['addNew'] = "user/addNew";
 
-/**
- * --------------------------------------------------------------------
- * Route Definitions
- * --------------------------------------------------------------------
- */
+$route['addNewUser'] = "user/addNewUser";
+$route['editOld'] = "user/editOld";
+$route['editOld/(:num)'] = "user/editOld/$1";
+$route['editUser'] = "user/editUser";
+$route['deleteUser'] = "user/deleteUser";
+$route['loadChangePass'] = "user/loadChangePass";
+$route['changePassword'] = "user/changePassword";
+$route['pageNotFound'] = "user/pageNotFound";
+$route['checkEmailExists'] = "user/checkEmailExists";
+$route['login-history'] = "user/loginHistoy";
+$route['login-history/(:num)'] = "user/loginHistoy/$1";
+$route['login-history/(:num)/(:num)'] = "user/loginHistoy/$1/$2";
 
-// We get a performance increase by specifying the default
-// route since we don't have to scan directories.
-$routes->add('/', 'Home::index');
+$route['forgotPassword'] = "login/forgotPassword";
+$route['resetPasswordUser'] = "login/resetPasswordUser";
+$route['resetPasswordConfirmUser'] = "login/resetPasswordConfirmUser";
+$route['resetPasswordConfirmUser/(:any)'] = "login/resetPasswordConfirmUser/$1";
+$route['resetPasswordConfirmUser/(:any)/(:any)'] = "login/resetPasswordConfirmUser/$1/$2";
+$route['createPasswordUser'] = "login/createPasswordUser";
 
-/**
- * --------------------------------------------------------------------
- * Additional Routing
- * --------------------------------------------------------------------
- *
- * There will often be times that you need additional routing and you
- * need to it be able to override any defaults in this file. Environment
- * based routes is one such time. require() additional route files here
- * to make that happen.
- *
- * You will have access to the $routes object within that file without
- * needing to reload it.
- */
-if (file_exists(APPPATH.'Config/'.ENVIRONMENT.'/Routes.php'))
-{
-	require APPPATH.'Config/'.ENVIRONMENT.'/Routes.php';
-}
+/* End of file routes.php */
+/* Location: ./application/config/routes.php */

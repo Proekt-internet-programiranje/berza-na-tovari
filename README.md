@@ -1,75 +1,78 @@
-# CodeIgniter 4 Development
+# Admin Panel - User Management using CodeIgniter
+**Admin Panel - User Management Demo using CodeIgniter + AdminLTE Bootstrap Theme**
 
-[![Build Status](https://travis-ci.org/bcit-ci/CodeIgniter4.svg?branch=develop)](https://travis-ci.org/bcit-ci/CodeIgniter4)
-[![Coverage Status](https://coveralls.io/repos/github/bcit-ci/CodeIgniter4/badge.svg?branch=develop)](https://coveralls.io/github/bcit-ci/CodeIgniter4?branch=develop)
-<br>
+The code is uploaded to demonstrate the simple role based Admin Panel application using CodeIgniter(MVC Framework)
 
-## What is CodeIgniter?
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible, and secure. 
-More information can be found at the [official site](http://codeigniter.com).
+## Version Information
+**1) Upto Release 1.2 -** CodeIgniter 2.2, PHP version 5.1.6 or newer, MySQL (4.1+), MySQLi
+    
+**2) Latest (master) -** CodeIgniter 3.1.6, PHP version 5.6 or newer, MySQL (5.1+), MySQLi
 
-This repository holds the pre-alpha code for CodeIgniter 4 only. 
-Version 4 is a complete rewrite to bring the quality and the code into a more modern version, 
-while still keeping as many of the things intact that has made people love the framework over the years. 
+## Installation
 
-**This is pre-release code and should not be used in production sites.**
+Download the code from repository.
+Unzip the zip file.
 
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
+Open browser; goto [localhost/phpmyadmin](http://localhost/phpmyadmin).
 
-### Documentation
+Create a database with name "cias" and import the file "cias.sql" in that database.
 
-The current documentation can be found [here](https://bcit-ci.github.io/CodeIgniter4/). As with the rest of the framework, it is currently a work in progress, and will see changes over time to structure, explanations, etc.
+Copy the remaining code into your root directory:
 
-## Important Change with index.php
+for example, for windows
 
-index.php is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+**WAMP : c:/wamp/www/cias**
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+OR
 
-**Please** read the user guide for a better explanation of how CI4 works!
-The user guide updating and deployment is a bit awkward at the moment, but we are working on it!
+**XAMPP : c:/xampp/htdocs/cias**
 
-## Repository Management
-We use Github issues to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+Open browser; goto [localhost/cias](http://localhost/cias) and press enter:
 
-If you raise an issue here that pertains to support or a feature request, it will
-be closed! If you are not sure if you have found a bug, raise a thread on the forum first -
-someone else may have encountered the same thing.
+The login screen will appear.
 
-Before raising a new Github issue, please check that your bug hasn't already
-been reported or fixed. 
+To login, I am going to provide the user-email ids and password below.
 
-We use pull requests (PRs) for CONTRIBUTIONS to the repository.
-We are looking for contributions that address one of the reported bugs or
-approved work packages.
+**System Administrator Account :**
 
-Do not use a PR as a form of feature request.
-Unsolicited contributions will only be considered if they fit nicely
-into the framework roadmap.
-Remember that some components that were part of CodeIgniter 3 are being moved
-to optional packages, with their own repository.
+email : admin@codeinsect.com
 
-## Contributing
-We **are** accepting contributions from the community, specifically those identified as part of phase 2.
+password : codeinsect
 
-We will try to manage the process somewhat, by adding a "Help wanted" label to those that we are 
-specifically interested in at any point in time. Join the discussion for those issues, and let us know 
-if you want to take the lead for one of them.
+**Manager Account :**
 
-We are not looking for out-of-scope contributions, only those that would be considered part of our controlled evolution!
+email :  manager@codeinsect.com
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/bcit-ci/CodeIgniter4/blob/develop/contributing.md) section in the user guide
+password : codeinsect
 
-## Server Requirements
-PHP version 7.1 or higher is required, with the following extensions installed: 
+**Employee Account :**
 
-- intl
+email : employee@codeinsect.com
+
+password : codeinsect
+
+Once you logged in with System Administrator account, you can create user or edit previous user if you want.
+
+**Youtube Links :**
+
+[CodeIgniter Admin Panel Demo](https://youtu.be/RFRXUd8LHUM) : This video contain the demo of CodeIgniter Admin Panel.
+
+[![CodeIgniter Admin Panel Demo](http://img.youtube.com/vi/RFRXUd8LHUM/0.jpg)](http://www.youtube.com/watch?v=RFRXUd8LHUM)
+
+[How to setup CodeIgniter Admin Panel](https://youtu.be/tU1PbcRj7ww) : This video contain the procedure of setting up CodeIgniter Admin Panel.
+
+[![How to setup CodeIgniter Admin Panel](http://img.youtube.com/vi/tU1PbcRj7ww/0.jpg)](http://www.youtube.com/watch?v=tU1PbcRj7ww)
 
 
-## Running CodeIgniter Tests
-Information on running CodeIgniter test suite can be found in the [README.md](tests/README.md) file in the tests directory.
+**ISSUE # 1 : After login "loginMe" controller is not found :**
+
+Lot of people raising this issue, I resolved it 4-5 times for every user. People are not searching for closed issues. Thats why I am going to put this here.
+
+How to get over this issue?
+
+1) enable mod_rewrite.dll (or mod_rewrite.so) by removing leading # in httpd.conf.
+2) After that, follow this solution https://stackoverflow.com/questions/24472349/htaccess-doesnt-work-on-xampp-windows-7
+
+**ISSUE # 2 : Call to undefined function password_verify() :**
+
+Solution is here : [Call to undefined function password_verify()](https://github.com/kishor10d/Admin-Panel-User-Management-using-CodeIgniter/issues/1)

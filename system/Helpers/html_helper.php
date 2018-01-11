@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014-2018 British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,86 +26,101 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * @package    CodeIgniter
- * @author     CodeIgniter Dev Team
- * @copyright  2014-2018 British Columbia Institute of Technology (https://bcit.ca/)
- * @license    https://opensource.org/licenses/MIT    MIT License
- * @link       https://codeigniter.com
- * @since      Version 3.0.0
+ * @package	CodeIgniter
+ * @author	EllisLab Dev Team
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
+ * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
+ * @license	http://opensource.org/licenses/MIT	MIT License
+ * @link	https://codeigniter.com
+ * @since	Version 1.0.0
  * @filesource
  */
-// --------------------------------------------------------------------
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * CodeIgniter HTML Helper
+ * CodeIgniter HTML Helpers
  *
- * @package     CodeIgniter
- * @subpackage  Helpers
- * @category    Helpers
- * @author      CodeIgniter Dev Team
- * @link        https://codeigniter.com/user_guide/helpers/html_helper.html
+ * @package		CodeIgniter
+ * @subpackage	Helpers
+ * @category	Helpers
+ * @author		EllisLab Dev Team
+ * @link		https://codeigniter.com/user_guide/helpers/html_helper.html
  */
+
+// ------------------------------------------------------------------------
+
+if ( ! function_exists('heading'))
+{
+	/**
+	 * Heading
+	 *
+	 * Generates an HTML heading tag.
+	 *
+	 * @param	string	content
+	 * @param	int	heading level
+	 * @param	string
+	 * @return	string
+	 */
+	function heading($data = '', $h = '1', $attributes = '')
+	{
+		return '<h'.$h._stringify_attributes($attributes).'>'.$data.'</h'.$h.'>';
+	}
+}
+
+// ------------------------------------------------------------------------
+
 if ( ! function_exists('ul'))
 {
-
 	/**
 	 * Unordered List
 	 *
-	 * Generates an HTML unordered list from an single or
-	 * multi-dimensional array.
+	 * Generates an HTML unordered list from an single or multi-dimensional array.
 	 *
-	 * @param   array   $list
-	 * @param   string  $attributes  HTML attributes
-	 * @return  string
+	 * @param	array
+	 * @param	mixed
+	 * @return	string
 	 */
-	function ul(array $list, string $attributes = ''): string
+	function ul($list, $attributes = '')
 	{
 		return _list('ul', $list, $attributes);
 	}
-
 }
 
 // ------------------------------------------------------------------------
 
 if ( ! function_exists('ol'))
 {
-
 	/**
 	 * Ordered List
 	 *
 	 * Generates an HTML ordered list from an single or multi-dimensional array.
 	 *
-	 * @param   array   $list
-	 * @param   string  $attributes  HTML attributes
-	 * @return  string
+	 * @param	array
+	 * @param	mixed
+	 * @return	string
 	 */
-	function ol(array $list, string $attributes = ''): string
+	function ol($list, $attributes = '')
 	{
 		return _list('ol', $list, $attributes);
 	}
-
 }
 
 // ------------------------------------------------------------------------
 
 if ( ! function_exists('_list'))
 {
-
 	/**
 	 * Generates the list
 	 *
 	 * Generates an HTML ordered list from an single or multi-dimensional array.
 	 *
-	 * @param   string   $type
-	 * @param   array    $list
-	 * @param   string   $attributes
-	 * @param   int      $depth
-	 * @return  string
+	 * @param	string
+	 * @param	mixed
+	 * @param	mixed
+	 * @param	int
+	 * @return	string
 	 */
-	function _list
-	(
-	string $type = 'ul', array $list = [], string $attributes = '', int $depth = 0
-	): string
+	function _list($type = 'ul', $list = array(), $attributes = '', $depth = 0)
 	{
 		// If an array wasn't submitted there's nothing to do...
 		if ( ! is_array($list))
@@ -115,8 +130,8 @@ if ( ! function_exists('_list'))
 
 		// Set the indentation based on the depth
 		$out = str_repeat(' ', $depth)
-				// Write the opening list tag
-				. '<' . $type . stringify_attributes($attributes) . ">\n";
+			// Write the opening list tag
+			.'<'.$type._stringify_attributes($attributes).">\n";
 
 
 		// Cycle through the list elements.  If an array is
@@ -127,7 +142,7 @@ if ( ! function_exists('_list'))
 		{
 			$_last_list_item = $key;
 
-			$out .= str_repeat(' ', $depth + 2) . '<li>';
+			$out .= str_repeat(' ', $depth + 2).'<li>';
 
 			if ( ! is_array($val))
 			{
@@ -135,48 +150,39 @@ if ( ! function_exists('_list'))
 			}
 			else
 			{
-				$out .= $_last_list_item
-						. "\n"
-						. _list($type, $val, '', $depth + 4)
-						. str_repeat(' ', $depth + 2);
+				$out .= $_last_list_item."\n"._list($type, $val, '', $depth + 4).str_repeat(' ', $depth + 2);
 			}
 
 			$out .= "</li>\n";
 		}
 
 		// Set the indentation for the closing tag and apply it
-		return $out . str_repeat(' ', $depth) . '</' . $type . ">\n";
+		return $out.str_repeat(' ', $depth).'</'.$type.">\n";
 	}
-
 }
 
 // ------------------------------------------------------------------------
 
 if ( ! function_exists('img'))
 {
-
 	/**
 	 * Image
 	 *
-	 * Generates an image element
+	 * Generates an <img /> element
 	 *
-	 * @param   mixed   $src
-	 * @param   bool    $indexPage
-	 * @param   string  $attributes
-	 * @return  string
+	 * @param	mixed
+	 * @param	bool
+	 * @param	mixed
+	 * @return	string
 	 */
-	function img
-	(
-	$src = '', bool $indexPage = false, string $attributes = ''
-	): string
+	function img($src = '', $index_page = FALSE, $attributes = '')
 	{
-		if ( ! is_array($src))
+		if ( ! is_array($src) )
 		{
-			$src = ['src' => $src];
+			$src = array('src' => $src);
 		}
 
-
-		//If there is no alt attribute defined, set it to an empty string.
+		// If there is no alt attribute defined, set it to an empty string
 		if ( ! isset($src['alt']))
 		{
 			$src['alt'] = '';
@@ -186,34 +192,31 @@ if ( ! function_exists('img'))
 
 		foreach ($src as $k => $v)
 		{
-			//Include a protocol if nothing is explicitely defined.
-			if ($k === 'src' && ! preg_match('#^([a-z]+:)?//#i', $v))
+			if ($k === 'src' && ! preg_match('#^(data:[a-z,;])|(([a-z]+:)?(?<!data:)//)#i', $v))
 			{
-				if ($indexPage === true)
+				if ($index_page === TRUE)
 				{
-					$img .= ' src="' . site_url($v) . '"';
+					$img .= ' src="'.get_instance()->config->site_url($v).'"';
 				}
 				else
 				{
-					$img .= ' src="' . slash_item('baseURL') . $v . '"';
+					$img .= ' src="'.get_instance()->config->slash_item('base_url').$v.'"';
 				}
 			}
 			else
 			{
-				$img .= ' ' . $k . '="' . $v . '"';
+				$img .= ' '.$k.'="'.$v.'"';
 			}
 		}
 
-		return $img . stringify_attributes($attributes) . ' />';
+		return $img._stringify_attributes($attributes).' />';
 	}
-
 }
 
 // ------------------------------------------------------------------------
 
 if ( ! function_exists('doctype'))
 {
-
 	/**
 	 * Doctype
 	 *
@@ -223,111 +226,58 @@ if ( ! function_exists('doctype'))
 	 * xhtml-frame, html4-strict, html4-trans, and html4-frame.
 	 * All values are saved in the doctypes config file.
 	 *
-	 * @param   mixed  $type    The doctype to be generated
-	 * @return  string
+	 * @param	string	type	The doctype to be generated
+	 * @return	string
 	 */
-	function doctype($type = 'html5'): string
+	function doctype($type = 'xhtml1-strict')
 	{
-		$doctypes = null;
-		$env = ENVIRONMENT;
-		$doctypes = Config\DocTypes::$list;
-		$customDocTypesPath = APPPATH . "Config/{$env}/DocTypes.php";
-		if (file_exists($customDocTypesPath))
+		static $doctypes;
+
+		if ( ! is_array($doctypes))
 		{
-			$customDocTypesNs = "Config\{$env}\DocTypes";
-			$doctypes = $customDocTypesNs::$list;
+			if (file_exists(APPPATH.'config/doctypes.php'))
+			{
+				include(APPPATH.'config/doctypes.php');
+			}
+
+			if (file_exists(APPPATH.'config/'.ENVIRONMENT.'/doctypes.php'))
+			{
+				include(APPPATH.'config/'.ENVIRONMENT.'/doctypes.php');
+			}
+
+			if (empty($_doctypes) OR ! is_array($_doctypes))
+			{
+				$doctypes = array();
+				return FALSE;
+			}
+
+			$doctypes = $_doctypes;
 		}
-		return $doctypes[$type] ?? false;
+
+		return isset($doctypes[$type]) ? $doctypes[$type] : FALSE;
 	}
-
-}
-
-// ------------------------------------------------------------------------
-
-if ( ! function_exists('script_tag'))
-{
-
-	/**
-	 * Script
-	 *
-	 * Generates link to a JS file
-	 *
-	 * @param   mixed   $src        Script source or an array
-	 * @param   bool    $indexPage  Should indexPage be added to the JS path
-	 * @return  string
-	 */
-	function script_tag
-	(
-	$src = '', bool $indexPage = false
-	): string
-	{
-		$script = '<script ';
-
-		if (is_array($src))
-		{
-			foreach ($src as $k => $v)
-			{
-				if ($k === 'src' && ! preg_match('#^([a-z]+:)?//#i', $v))
-				{
-					if ($indexPage === true)
-					{
-						$script .= 'src="' . site_url($v) . '" ';
-					}
-					else
-					{
-						$script .= 'src="' . slash_item('baseURL') . $v . '" ';
-					}
-				}
-				else
-				{
-					$script .= $k . '="' . $v . '" ';
-				}
-			}
-		}
-		else
-		{
-			if (preg_match('#^([a-z]+:)?//#i', $src))
-			{
-				$script .= 'src="' . $src . '" ';
-			}
-			elseif ($indexPage === true)
-			{
-				$script .= 'src="' . site_url($src) . '" ';
-			}
-			else
-			{
-				$script .= 'src="' . slash_item('baseURL') . $src . '" ';
-			}
-		}
-
-		return $script . 'type="text/javascript"' . "></script>";
-	}
-
 }
 
 // ------------------------------------------------------------------------
 
 if ( ! function_exists('link_tag'))
 {
-
 	/**
 	 * Link
 	 *
 	 * Generates link to a CSS file
 	 *
-	 * @param   mixed   $href       Stylesheet hrefs or an array
-	 * @param   string  $rel
-	 * @param   string  $type
-	 * @param   string  $title
-	 * @param   string  $media
-	 * @param   bool    $indexPage  should indexPage be added to the CSS path.
-	 * @return  string
+	 * @param	mixed	stylesheet hrefs or an array
+	 * @param	string	rel
+	 * @param	string	type
+	 * @param	string	title
+	 * @param	string	media
+	 * @param	bool	should index_page be added to the css path
+	 * @return	string
 	 */
-	function link_tag
-	(
-	$href = '', string $rel = 'stylesheet', string $type = 'text/css', string $title = '', string $media = '', bool $indexPage = false
-	): string
+	function link_tag($href = '', $rel = 'stylesheet', $type = 'text/css', $title = '', $media = '', $index_page = FALSE)
 	{
+		$CI =& get_instance();
 		$link = '<link ';
 
 		if (is_array($href))
@@ -336,18 +286,18 @@ if ( ! function_exists('link_tag'))
 			{
 				if ($k === 'href' && ! preg_match('#^([a-z]+:)?//#i', $v))
 				{
-					if ($indexPage === true)
+					if ($index_page === TRUE)
 					{
-						$link .= 'href="' . site_url($v) . '" ';
+						$link .= 'href="'.$CI->config->site_url($v).'" ';
 					}
 					else
 					{
-						$link .= 'href="' . slash_item('baseURL') . $v . '" ';
+						$link .= 'href="'.$CI->config->slash_item('base_url').$v.'" ';
 					}
 				}
 				else
 				{
-					$link .= $k . '="' . $v . '" ';
+					$link .= $k.'="'.$v.'" ';
 				}
 			}
 		}
@@ -355,472 +305,106 @@ if ( ! function_exists('link_tag'))
 		{
 			if (preg_match('#^([a-z]+:)?//#i', $href))
 			{
-				$link .= 'href="' . $href . '" ';
+				$link .= 'href="'.$href.'" ';
 			}
-			elseif ($indexPage === true)
+			elseif ($index_page === TRUE)
 			{
-				$link .= 'href="' . site_url($href) . '" ';
+				$link .= 'href="'.$CI->config->site_url($href).'" ';
 			}
 			else
 			{
-				$link .= 'href="' . slash_item('baseURL') . $href . '" ';
+				$link .= 'href="'.$CI->config->slash_item('base_url').$href.'" ';
 			}
 
-			$link .= 'rel="' . $rel . '" type="' . $type . '" ';
+			$link .= 'rel="'.$rel.'" type="'.$type.'" ';
 
 			if ($media !== '')
 			{
-				$link .= 'media="' . $media . '" ';
+				$link .= 'media="'.$media.'" ';
 			}
 
 			if ($title !== '')
 			{
-				$link .= 'title="' . $title . '" ';
+				$link .= 'title="'.$title.'" ';
 			}
 		}
 
-		return $link . "/>";
-	}
-
-	// ------------------------------------------------------------------------
-
-	if ( ! function_exists('video'))
-	{
-
-		/**
-		 * Video
-		 *
-		 * Geneartes a video element to embed videos. The video element can
-		 * contain one or more video sources
-		 *
-		 * @param  mixed  $src                   Either a source string or
-		 * an array of sources
-		 * @param  string $unsupportedMessage    The message to display
-		 * if the media tag is not supported by the browser
-		 * @param  string $attributes            HTML attributes
-		 * @param  array  $tracks
-		 * @param  bool   $indexPage
-		 * @return string
-		 *
-		 */
-		function video
-		(
-		$src, string $unsupportedMessage = '', string $attributes = '', array $tracks = [], bool $indexPage = false
-		): string
-		{
-			if (is_array($src))
-			{
-				return _media
-						(
-						'video', $src, $unsupportedMessage, $attributes, $tracks
-				);
-			}
-
-			$video = '<video';
-
-			if (_has_protocol($src))
-			{
-				$video .= ' src="' . $src . '"';
-			}
-			elseif ($indexPage === true)
-			{
-				$video .= ' src="' . site_url($src) . '"';
-			}
-			else
-			{
-				$video .= ' src="' . slash_item('baseURL') . $src . '"';
-			}
-
-			if ($attributes !== '')
-			{
-				$video .= ' ' . $attributes;
-			}
-
-			$video .= ">\n";
-
-			if ( ! empty($tracks))
-			{
-				foreach ($tracks as $track)
-				{
-					$video .= _space_indent() . $track . "\n";
-				}
-			}
-
-			if ( ! empty($unsupportedMessage))
-			{
-				$video .= _space_indent()
-						. $unsupportedMessage
-						. "\n";
-			}
-
-			$video .= "</video>\n";
-
-			return $video;
-		}
-
-	}
-
-	// ------------------------------------------------------------------------
-
-	if ( ! function_exists('audio'))
-	{
-
-		/**
-		 * Audio
-		 *
-		 * Generates an audio element to embed sounds
-		 *
-		 * @param  mixed  $src                Either a source string or an array of sources
-		 * @param  string $unsupportedMessage The message to display if the media tag is not supported by the browser.
-		 * @param  string $attributes         HTML attributes
-		 * @param array   $tracks
-		 * @param bool    $indexPage
-		 *
-		 * @return string
-		 */
-		function audio
-		(
-		$src, string $unsupportedMessage = '', string $attributes = '', array $tracks = [], bool $indexPage = false
-		): string
-		{
-			if (is_array($src))
-			{
-				return _media
-						(
-						'audio', $src, $unsupportedMessage, $attributes, $tracks
-				);
-			}
-
-			$audio = '<audio';
-
-			if (_has_protocol($src))
-			{
-				$audio .= ' src="' . $src . '"';
-			}
-			elseif ($indexPage === true)
-			{
-				$audio .= ' src="' . site_url($src) . '"';
-			}
-			else
-			{
-				$audio .= ' src="' . slash_item('baseURL') . $src . '"';
-			}
-
-			if ($attributes !== '')
-			{
-				$audio .= ' ' . $attributes;
-			}
-
-			$audio .= '>';
-
-			if ( ! empty($tracks))
-			{
-				foreach ($tracks as $track)
-				{
-					$audio .= $track;
-				}
-			}
-
-			if ( ! empty($unsupportedMessage))
-			{
-				$video .= _space_indent()
-						. $unsupportedMessage
-						. "\n";
-			}
-
-			$audio .= "</audio>\n";
-
-			return $audio;
-		}
-
-	}
-
-	// ------------------------------------------------------------------------
-
-	if ( ! function_exists('_media'))
-	{
-
-		function _media
-		(
-		string $name, array $types, string $unsupportedMessage = '', string $attributes = '', array $tracks = []
-		): string
-		{
-			$media = '<' . $name;
-
-			if (empty($attributes))
-			{
-				$media .= '>';
-			}
-			else
-			{
-				$media .= ' ' . $attributes . '>';
-			}
-
-			$media .= "\n";
-
-			foreach ($types as $option)
-			{
-				$media .= _space_indent() . $option . "\n";
-			}
-
-			if (empty($tracks))
-			{
-				$media .= "/>";
-			}
-			else
-			{
-				foreach ($tracks as $track)
-				{
-					$media .= _space_indent() . $track . "\n";
-				}
-			}
-
-			if ( ! empty($unsupportedMessage))
-			{
-				$media .= _space_indent() . $unsupportedMessage . "\n";
-			}
-
-			$media .= '</' . $name . ">\n";
-
-			return $media;
-		}
-
-	}
-
-	// ------------------------------------------------------------------------
-
-	if ( ! function_exists('source'))
-	{
-
-		/**
-		 * Source
-		 *
-		 * Generates a source element that specifies multiple media resources
-		 * for either audio or video element
-		 *
-		 * @param  string $src          The path of the media resource
-		 * @param  string $type         The MIME-type of the resource with
-		 * optional codecs parameters
-		 * @param  string $attributes   HTML attributes
-		 * @param  bool $indexPage
-		 * @return string
-		 */
-		function source
-		(
-		string $src, string $type, string $attributes = '', bool $indexPage = false
-		): string
-		{
-			if (_has_protocol($src))
-			{
-				//Do nothing.
-			}
-			elseif ($indexPage === true)
-			{
-				$src = site_url($src);
-			}
-			else
-			{
-				$src = slash_item('baseURL') . $src;
-			}
-
-			$source = '<source src="' . $src
-					. '" type="' . $type . '"';
-
-			if ( ! empty($attributes))
-			{
-				$source .= ' ' . $attributes;
-			}
-
-			$source .= ' />';
-
-			return $source;
-		}
-
-	}
-
-	// ------------------------------------------------------------------------
-
-	if ( ! function_exists('track'))
-	{
-
-		/**
-		 * Track
-		 *
-		 * Generates a track element to specify timed tracks. The tracks are
-		 * formatted in WebVTT format.
-		 *
-		 * @param  string $src          The path of the .VTT file
-		 * @param  string $kind
-		 * @param  string $srcLanguage
-		 * @param  string $label
-		 * @return string
-		 */
-		function track
-		(
-		string $src, string $kind, string $srcLanguage, string $label
-		): string
-		{
-			return '<track src="' . $src
-					. '" kind="' . $kind
-					. '" srclang="' . $srcLanguage
-					. '" label="' . $label
-					. '" />';
-		}
-
-	}
-
-	// ------------------------------------------------------------------------
-
-	if ( ! function_exists('object'))
-	{
-
-		/**
-		 * Object
-		 *
-		 * Generates an object element that represents the media
-		 * as either image or a resource plugin such as audio, video,
-		 * Java applets, ActiveX, PDF and Flash
-		 *
-		 * @param  string $data       A resource URL
-		 * @param  string $type       Content-type of the resource
-		 * @param  string $attributes HTML attributes
-		 * @param  array  $params
-		 * @param bool    $indexPage
-		 *
-		 * @return string
-		 */
-		function object
-		(
-		string $data, string $type, string $attributes = '', array $params = [], bool $indexPage = false
-		): string
-		{
-			if (_has_protocol($data))
-			{
-				//Do nothing.
-			}
-			elseif ($indexPage === true)
-			{
-				$data = site_url($data);
-			}
-			else
-			{
-				$data = slash_item('baseURL') . $data;
-			}
-
-			$object = '<object data="' . $data . '" '
-					. $attributes . '>';
-
-			if ( ! empty($params))
-			{
-				$object .= "\n";
-			}
-
-			foreach ($params as $param)
-			{
-				$object .= _space_indent() . $param . "\n";
-			}
-
-			$object .= "</object>\n";
-
-			return $object;
-		}
-
-	}
-
-	// ------------------------------------------------------------------------
-
-	if ( ! function_exists('param'))
-	{
-
-		/**
-		 * Param
-		 *
-		 * Generates a param element that defines parameters
-		 * for the object element.
-		 *
-		 * @param  string $name        The name of the parameter
-		 * @param  string $value       The value of the parameter
-		 * @param  string $type        The MIME-type
-		 * @param  string $attributes  HTML attributes
-		 * @return string
-		 */
-		function param
-		(
-		string $name, string $value, string $type = 'ref', string $attributes = ''
-		): string
-		{
-			return '<param name="' . $name
-					. '" type="' . $type
-					. '" value="' . $value
-					. '" ' . $attributes . ' />';
-		}
-
-	}
-
-	// ------------------------------------------------------------------------
-
-	if ( ! function_exists('embed'))
-	{
-
-		/**
-		 * Embed
-		 *
-		 * Generates an embed element
-		 *
-		 * @param  string $src          The path of the resource to embed
-		 * @param  string $type         MIME-type
-		 * @param  string $attributes   HTML attributes
-		 * @param  bool   $indexPage
-		 * @return string
-		 */
-		function embed
-		(
-		string $src, string $type, string $attributes = '', bool $indexPage = false
-		): string
-		{
-			if (_has_protocol($src))
-			{
-				//Do nothing.
-			}
-			elseif ($indexPage === true)
-			{
-				$src = site_url($src);
-			}
-			else
-			{
-				$src = slash_item('baseURL') . $src;
-			}
-
-			return '<embed src="' . $src
-					. '" type="' . $type . '" '
-					. $attributes . " />\n";
-		}
-
-	}
-
-	// ------------------------------------------------------------------------
-
-	if ( ! function_exists('_has_protocol'))
-	{
-
-		function _has_protocol($url)
-		{
-			return preg_match('#^([a-z]+:)?//#i', $url);
-		}
-
-	}
-
-	// ------------------------------------------------------------------------
-
-	if ( ! function_exists('_space_indent'))
-	{
-
-		function _space_indent($depth = 2)
-		{
-			return str_repeat(' ', $depth);
-		}
-
+		return $link."/>\n";
 	}
 }
 
 // ------------------------------------------------------------------------
+
+if ( ! function_exists('meta'))
+{
+	/**
+	 * Generates meta tags from an array of key/values
+	 *
+	 * @param	array
+	 * @param	string
+	 * @param	string
+	 * @param	string
+	 * @return	string
+	 */
+	function meta($name = '', $content = '', $type = 'name', $newline = "\n")
+	{
+		// Since we allow the data to be passes as a string, a simple array
+		// or a multidimensional one, we need to do a little prepping.
+		if ( ! is_array($name))
+		{
+			$name = array(array('name' => $name, 'content' => $content, 'type' => $type, 'newline' => $newline));
+		}
+		elseif (isset($name['name']))
+		{
+			// Turn single array into multidimensional
+			$name = array($name);
+		}
+
+		$str = '';
+		foreach ($name as $meta)
+		{
+			$type		= (isset($meta['type']) && $meta['type'] !== 'name')	? 'http-equiv' : 'name';
+			$name		= isset($meta['name'])					? $meta['name'] : '';
+			$content	= isset($meta['content'])				? $meta['content'] : '';
+			$newline	= isset($meta['newline'])				? $meta['newline'] : "\n";
+
+			$str .= '<meta '.$type.'="'.$name.'" content="'.$content.'" />'.$newline;
+		}
+
+		return $str;
+	}
+}
+
+// ------------------------------------------------------------------------
+
+if ( ! function_exists('br'))
+{
+	/**
+	 * Generates HTML BR tags based on number supplied
+	 *
+	 * @deprecated	3.0.0	Use str_repeat() instead
+	 * @param	int	$count	Number of times to repeat the tag
+	 * @return	string
+	 */
+	function br($count = 1)
+	{
+		return str_repeat('<br />', $count);
+	}
+}
+
+// ------------------------------------------------------------------------
+
+if ( ! function_exists('nbs'))
+{
+	/**
+	 * Generates non-breaking space entities based on number supplied
+	 *
+	 * @deprecated	3.0.0	Use str_repeat() instead
+	 * @param	int
+	 * @return	string
+	 */
+	function nbs($num = 1)
+	{
+		return str_repeat('&nbsp;', $num);
+	}
+}
