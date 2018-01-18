@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Najava extends CI_Controller {
+class Welcome extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,6 +20,6 @@ class Najava extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('najava');
+		$this->load->view('welcome_message');
 	}
 }
