@@ -17,10 +17,8 @@
                 <a class="navbar-brand" href="<?= site_url()?>">Берза на товари</a>
             </div>
             <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Почетна</a></li>
-            <li><a href="#">Page 1</a></li>
-            <li><a href="#">Page 2</a></li>
-            <li><a href="<?= site_url()?>/pocetna/odjavi_se">Одјави се</a></li>
+            <li class="active"><a href="#">Дома</a></li>
+            <li class="float-right"><a href="<?= site_url()?>/pocetna/odjavi_se">Одјави се</a></li>
             </ul>
         </div>
     </nav>

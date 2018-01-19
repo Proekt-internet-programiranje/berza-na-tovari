@@ -11,7 +11,7 @@ class Najava_model extends CI_Model{
     public function proveri_korisnik($podatoci){
         $this->db->select('*');
         $this->db->where('korisnicko_ime',$podatoci['korisnicko_ime']);
-        $this->db->where('lozinka', $podatoci['lozinka']);
+        $this->db->where('lozinka', md5($podatoci['lozinka']));
         return $this->db->get('korisnici')->row();
     }
     
