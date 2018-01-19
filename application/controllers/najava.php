@@ -15,15 +15,35 @@ class Najava extends CI_Controller{
             $rezultat = $this->najava->proveri_korisnik($_POST);
             if(!empty($rezultat)){
                 $podatoci = [
-                    'id_korisnik' => $rezultat->id_korisnik,
-                    'korisnicko_ime'     => $rezultat->korisnicko_ime];
+                    'id_korisnik'        => $rezultat->id_korisnik,
+                    'uloga'              => $rezultat->uloga,
+                    'korisnicko_ime'     => $rezultat->korisnicko_ime,
+                    'ime'                => $rezultat->ime,
+                    'prezime'            => $rezultat->prezime
+                ];
                 $this->session->set_userdata($podatoci);
                 redirect('pocetna'); 
             } else {
-                $this->session->set_flashdata('flash_data', 'Нешто е грешка');
+                $this->session->set_flashdata('poraka', 'Нешто е грешка');
                 redirect('najava');
             }
         }
         $this->load->view('najava');
+    }
+    
+    public function registracija(){
+        $podatoci = array(
+            'ime' => $this->input->post('ime'),
+            'prezime' => $this->input->post('prezime'),
+            'korisnicko_ime' => $this->input->post('korisnicko_ime'),
+            'lozinka' => $this->input->post('lozinka')
+        );
+        if(!$this->najava->registracija($podatoci)){
+            $this->session->set_flashdata('poraka', 'Регистрирањето беше неуспешно');
+            redirect('najava/#signup');
+        } else {
+            $this->session->set_flashdata('poraka', 'Регистрацијата беше успешна, најавете се');
+            redirect('najava/#login');
+        }
     }
 }
