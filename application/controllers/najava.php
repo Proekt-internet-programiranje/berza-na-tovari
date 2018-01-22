@@ -33,10 +33,10 @@ class Najava extends CI_Controller{
     
     public function registracija(){
         $podatoci = array(
-            'ime' => $this->input->post('ime'),
-            'prezime' => $this->input->post('prezime'),
-            'korisnicko_ime' => $this->input->post('korisnicko_ime'),
-            'lozinka' => md5($this->input->post('lozinka'))
+            'ime'           => $this->input->post('ime'),
+            'prezime'       => $this->input->post('prezime'),
+            'korisnicko_ime'=> $this->input->post('korisnicko_ime'),
+            'lozinka'       => md5($this->input->post('lozinka'))
         );
         if(!$this->najava->registracija($podatoci)){
             $this->session->set_flashdata('poraka', 'Регистрирањето беше неуспешно');
