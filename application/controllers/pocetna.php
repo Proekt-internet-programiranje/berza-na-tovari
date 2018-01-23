@@ -21,6 +21,7 @@ class Pocetna extends CI_Controller{
     public function odjavi_se(){
         $podatoci = ['id_korisnik','korisnicko_ime' ,'ime','prezime'];
         $this->session->unset_userdata($podatoci);
-        redirect('najava');
+        $this->session->set_flashdata('poraka', 'Ви благодариме за довербата');
+        redirect('najava/#login');
     }
 }

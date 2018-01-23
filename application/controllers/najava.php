@@ -16,10 +16,8 @@ class Najava extends CI_Controller{
             if(!empty($rezultat)){
                 $podatoci = [
                     'id_korisnik'        => $rezultat->id_korisnik,
-                    'uloga'              => $rezultat->uloga,
-                    'korisnicko_ime'     => $rezultat->korisnicko_ime,
-                    'ime'                => $rezultat->ime,
-                    'prezime'            => $rezultat->prezime
+                    'uloga'             => $rezultat->imeuloga,
+                    'korisnicko_ime'     => $rezultat->korisnicko_ime
                 ];
                 $this->session->set_userdata($podatoci);
                 redirect('pocetna'); 
@@ -32,12 +30,16 @@ class Najava extends CI_Controller{
     }
     
     public function registracija(){
-        $podatoci = array(
-            'ime'           => $this->input->post('ime'),
-            'prezime'       => $this->input->post('prezime'),
-            'korisnicko_ime'=> $this->input->post('korisnicko_ime'),
-            'lozinka'       => md5($this->input->post('lozinka'))
-        );
+        $podatoci = $podatoci = [
+                    'id_korisnik'        => $rezultat->id_korisnik,
+                    'id_tipkorisnik'     => $rezultat->id_tipkorisnik,
+                    'korisnicko_ime'     => $rezultat->korisnicko_ime,
+                    'imekompanija'       => $rezultat->imekompanija,
+                    'danocen_broj'       => $rezultat->danocen_broj,
+                    'email'              => $rezultat->email,
+                    'adresa'             => $rezultat->adresa,
+                    'telefon'            => $rezultat->telefon
+                ];
         if(!$this->najava->registracija($podatoci)){
             $this->session->set_flashdata('poraka', 'Регистрирањето беше неуспешно');
             redirect('najava/#signup');

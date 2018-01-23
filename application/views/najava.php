@@ -33,18 +33,39 @@
           <div class="top-row">
             <div class="field-wrap">
               <label>
-                Име<span class="req">*</span>
+                Назив на компанија<span class="req">*</span>
               </label>
-              <input type="text" name="ime" required autocomplete="off" />
+              <input type="text" name="imekompanija" required autocomplete="off" />
             </div>
         
             <div class="field-wrap">
               <label>
-                Презиме<span class="req">*</span>
+                Даночен број<span class="req">*</span>
               </label>
-              <input type="text" name="prezime" required autocomplete="off"/>
+              <input type="text" name="danocen_broj" required autocomplete="off"/>
             </div>
           </div>
+              
+            <div class="field-wrap">
+              <label>
+                Емаил<span class="req">*</span>
+              </label>
+              <input type="email" name="email" required autocomplete="off"/>
+            </div>
+              
+            <div class="field-wrap">
+              <label>
+                Адреса<span class="req">*</span>
+              </label>
+              <input type="text" name="adresa" required autocomplete="off"/>
+            </div>
+          
+              <div class="field-wrap">
+              <label>
+                Телефон<span class="req">*</span>
+              </label>
+              <input type="text" name="telefon" required autocomplete="off"/>
+            </div>
 
           <div class="field-wrap">
             <label>
