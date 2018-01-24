@@ -19,15 +19,15 @@ class Najava extends CI_Controller{
                     'imekompanija'       => $rezultat->imekompanija,
                     'uloga'              => $rezultat->imeuloga,
                     'danocen_broj'       => $rezultat->danocen_broj,
-                    'email'              => $rezultat->email,
+                    'email'              => $rezultat->e_mail,
                     'adresa'             => $rezultat->adresa,
                     'telefon'            => $rezultat->telefon
                 ];
                 $this->session->set_userdata($podatoci);
-                redirect('pocetna'); 
+                redirect('pocetna');
             } else {
                 $this->session->set_flashdata('poraka', 'Погрешно корисничко име или лозинка');
-                redirect('najava/#najava');
+                redirect('najava');
             }
         }
         $this->load->view('najava');
@@ -49,11 +49,12 @@ class Najava extends CI_Controller{
         
                 if(!$this->najava->registracija($podatoci)){
                     $this->session->set_flashdata('poraka', 'Регистрирањето беше неуспешно');
-                    redirect('najava/#signup');
+                    redirect('najava');
                 } else {
                     $this->session->set_flashdata('poraka', 'Регистрацијата беше успешна, најавете се');
-                    redirect('najava/#login');
+                    redirect('najava');
                 }
             }
         }
+    
 }

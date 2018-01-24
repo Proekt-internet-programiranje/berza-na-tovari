@@ -16,7 +16,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="<?= site_url()?>">Берза на товари</a>
             </div>
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="#">Дома</a></li>
             <li class="float-right"><a href="<?= site_url()?>/pocetna/odjavi_se">Одјави се</a></li>
             </ul>

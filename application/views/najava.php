@@ -72,17 +72,15 @@
             </div>
           </div>
             
-            <div class="top-row"> 
-            <div class="field-wrap">
-            <label>Тип на компанија<span class="req">*</span></label>
-            </div>
-            <div class="field-wrap">
-            <select name="tip_kompanija">
-              <option value="3">Шпедиција</option>
-              <option value="2">Превозник</option>
-            </select>
-            </div>
-            </div> 
+                <div class="field-wrap">
+                    <label>Тип на компанија<span class="req">*</span></label>
+                </div>
+                <div class="field-wrap">
+                    <select name="tip_kompanija">
+                        <option value="3">Шпедиција</option>
+                        <option value="2">Превозник</option>
+                    </select>
+                </div> 
               
               
             <div class="field-wrap">

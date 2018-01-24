@@ -1,11 +1,9 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pocetna extends CI_Controller{
     
     function __construct(){
         parent::__construct();
-        $tip_korisnik = $this->session->userdata('uloga');
         if(empty($this->session->userdata('id_korisnik'))){
             $this->session->set_flashdata('poraka','Немате пристап');
             redirect('najava');
@@ -13,9 +11,15 @@ class Pocetna extends CI_Controller{
     }
     
     public function index(){
-        $this->load->view('header');
-        $this->load->view('pocetna');
-        $this->load->view('footer');
+        if(($this->session->userdata('uloga'))=='Admin')
+            redirect('admin');
+        else if(($this->session->userdata('uloga'))=='Prevoznik')
+            redirect('prevoznik');
+        else if(($this->session->userdata('uloga'))=='Spedicija')
+            redirect('spedicija');
+        else if(($this->session->userdata('uloga'))=='Vozac')
+            redirect('vozac');
+        
     }
     
     public function odjavi_se(){
