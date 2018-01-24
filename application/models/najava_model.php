@@ -14,8 +14,16 @@ class Najava_model extends CI_Model{
         $this->db->where('korisnicko_ime',$podatoci['korisnicko_ime']);
         $this->db->where('lozinka', md5($podatoci['lozinka']));
         $this->db->join('ulogi','ulogi.id_uloga=korisnici.id_tipkorisnik');
-        $this->db->join('kompanija','kompanija.id_kompanija=korisnici.id_korisnik');
-        return $this->db->get()->row();
+        $this->db->join('kompanija','kompanija.id_kompanija=korisnici.id_korisnik'); //javuva se problem ako za korisnik admin nema povrzano firma, zatoa e ovaa proverka
+        $rezultat = $this->db->get()->row();
+        if(!$rezultat){
+            $this->db->select('*');
+            $this->db->from('korisnici');
+            $this->db->where('korisnicko_ime',$podatoci['korisnicko_ime']);
+            $this->db->where('lozinka', md5($podatoci['lozinka']));
+            $this->db->join('ulogi','ulogi.id_uloga=korisnici.id_tipkorisnik');
+            return $this->db->get()->row();
+        } else return $rezultat;
     }
     
     public function registracija($korisnik){
