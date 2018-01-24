@@ -22,6 +22,7 @@ class Najava_model extends CI_Model{
         $korisnik_podatoci = array('id_tipkorisnik' => $korisnik['uloga'],
                                    'korisnicko_ime' => $korisnik['korisnicko_ime'],
                                    'lozinka'        => md5($korisnik['lozinka']));
+        
         if($this->db->insert('korisnici', $korisnik_podatoci)){
             $this->db->select('id_korisnik');
             $this->db->from('korisnici');

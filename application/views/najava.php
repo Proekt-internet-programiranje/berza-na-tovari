@@ -20,11 +20,37 @@
          </h1> 
       </center>
       <ul class="tab-group">
-        <li class="tab active"><a href="#signup">Регистрација</a></li>
-        <li class="tab"><a href="#login">Најава</a></li>
+        <li class="tab active"><a href="#login">Најава</a></li>
+        <li class="tab"><a href="#signup">Регистрација</a></li>
       </ul>
       
       <div class="tab-content">
+        <div id="login">   
+          <h1>Добредојде</h1>
+          
+          <form action="<?= site_url('najava') ?>" method="post">
+          
+            <div class="field-wrap">
+            <label>
+              Корисничко име<span class="req">*</span>
+            </label>
+            <input type="text" name="korisnicko_ime" required autocomplete="off"/>
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Лозинка<span class="req">*</span>
+            </label>
+            <input type="password" name="lozinka" required autocomplete="off"/>
+          </div>
+          
+          <p class="forgot"><a href="#">Заборавена лозинка?</a></p>
+          
+          <button class="button button-block">Најави се</button>
+          
+          </form>
+
+        </div>
         <div id="signup">   
           <h1>Регистрација</h1>
           
@@ -99,34 +125,6 @@
           </form>
 
         </div>
-        
-        <div id="login">   
-          <h1>Добредојде</h1>
-          
-          <form action="<?= site_url('najava') ?>" method="post">
-          
-            <div class="field-wrap">
-            <label>
-              Корисничко име<span class="req">*</span>
-            </label>
-            <input type="text" name="korisnicko_ime" required autocomplete="off"/>
-          </div>
-          
-          <div class="field-wrap">
-            <label>
-              Лозинка<span class="req">*</span>
-            </label>
-            <input type="password" name="lozinka" required autocomplete="off"/>
-          </div>
-          
-          <p class="forgot"><a href="#">Заборавена лозинка?</a></p>
-          
-          <button class="button button-block">Најави се</button>
-          
-          </form>
-
-        </div>
-        
       </div><!-- tab-content -->
       
 </div> <!-- /form -->

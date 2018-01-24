@@ -26,8 +26,8 @@ class Najava extends CI_Controller{
                 $this->session->set_userdata($podatoci);
                 redirect('pocetna'); 
             } else {
-                $this->session->set_flashdata('poraka', 'Нешто е грешка');
-                redirect('najava');
+                $this->session->set_flashdata('poraka', 'Погрешно корисничко име или лозинка');
+                redirect('najava/#najava');
             }
         }
         $this->load->view('najava');
