@@ -16,8 +16,12 @@ class Najava extends CI_Controller{
             if(!empty($rezultat)){
                 $podatoci = [
                     'id_korisnik'        => $rezultat->id_korisnik,
-                    'uloga'             => $rezultat->imeuloga,
-                    'korisnicko_ime'     => $rezultat->korisnicko_ime
+                    'imekompanija'       => $rezultat->imekompanija,
+                    'uloga'              => $rezultat->imeuloga,
+                    'danocen_broj'       => $rezultat->danocen_broj,
+                    'email'              => $rezultat->email,
+                    'adresa'             => $rezultat->adresa,
+                    'telefon'            => $rezultat->telefon
                 ];
                 $this->session->set_userdata($podatoci);
                 redirect('pocetna'); 
@@ -30,22 +34,26 @@ class Najava extends CI_Controller{
     }
     
     public function registracija(){
-        $podatoci = $podatoci = [
-                    'id_korisnik'        => $rezultat->id_korisnik,
-                    'id_tipkorisnik'     => $rezultat->id_tipkorisnik,
-                    'korisnicko_ime'     => $rezultat->korisnicko_ime,
-                    'imekompanija'       => $rezultat->imekompanija,
-                    'danocen_broj'       => $rezultat->danocen_broj,
-                    'email'              => $rezultat->email,
-                    'adresa'             => $rezultat->adresa,
-                    'telefon'            => $rezultat->telefon
-                ];
-        if(!$this->najava->registracija($podatoci)){
-            $this->session->set_flashdata('poraka', 'Регистрирањето беше неуспешно');
-            redirect('najava/#signup');
-        } else {
-            $this->session->set_flashdata('poraka', 'Регистрацијата беше успешна, најавете се');
-            redirect('najava/#login');
+        if($_POST){
+                $rezultat= $_POST;
+                $podatoci = [
+                    'imekompanija'  => $rezultat['imekompanija'],
+                    'danocen_broj'  => $rezultat['danocen_broj'],
+                    'uloga'         => $rezultat['tip_kompanija'],
+                    'email'         => $rezultat['email'],
+                    'adresa'        => $rezultat['adresa'],
+                    'telefon'       => $rezultat['telefon'],
+                    'korisnicko_ime'=> $rezultat['korisnicko_ime'],
+                    'lozinka'       => $rezultat['lozinka']
+                            ];
+        
+                if(!$this->najava->registracija($podatoci)){
+                    $this->session->set_flashdata('poraka', 'Регистрирањето беше неуспешно');
+                    redirect('najava/#signup');
+                } else {
+                    $this->session->set_flashdata('poraka', 'Регистрацијата беше успешна, најавете се');
+                    redirect('najava/#login');
+                }
+            }
         }
-    }
 }

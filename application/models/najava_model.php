@@ -19,10 +19,30 @@ class Najava_model extends CI_Model{
     }
     
     public function registracija($korisnik){
-        $vnes = $this->db->insert('korisnici', $korisnik);
-        if($vnes){
-            return true;
-        } else return false;
+        $korisnik_podatoci = array('id_tipkorisnik' => $korisnik['uloga'],
+                                   'korisnicko_ime' => $korisnik['korisnicko_ime'],
+                                   'lozinka'        => md5($korisnik['lozinka']));
+        if($this->db->insert('korisnici', $korisnik_podatoci)){
+            $this->db->select('id_korisnik');
+            $this->db->from('korisnici');
+            $this->db->where('korisnicko_ime',$korisnik['korisnicko_ime']);
+            $rezultat=$this->db->get()->row();
+            $korisnik_id=$rezultat->id_korisnik;
+            //vneseno korisnik i dobieno idto na korisniko
+            $kompanija_podatoci = array('id_kompanija'    => $korisnik_id,
+                                        'id_tipkompanija' => $korisnik['uloga'],
+                                        'imekompanija'    => $korisnik['imekompanija'],
+                                        'danocen_broj'    => $korisnik['danocen_broj'],
+                                        'e-mail'          => $korisnik['email'],
+                                        'adresa'          => $korisnik['adresa'],
+                                        'telefon'         => $korisnik['telefon']
+                                   );
+            if($this->db->insert('kompanija',$kompanija_podatoci)){
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
     
     function __destruct() {
