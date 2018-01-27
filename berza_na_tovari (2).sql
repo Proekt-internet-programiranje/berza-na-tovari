@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 23, 2018 at 05:38 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.10
+-- Generation Time: Jan 27, 2018 at 04:19 AM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,10 +33,18 @@ CREATE TABLE `kompanija` (
   `id_tipkompanija` int(50) NOT NULL,
   `imekompanija` varchar(50) COLLATE utf8_bin NOT NULL,
   `danocen_broj` int(50) NOT NULL,
-  `e-mail` varchar(50) COLLATE utf8_bin NOT NULL,
+  `e_mail` varchar(50) COLLATE utf8_bin NOT NULL,
   `adresa` varchar(50) COLLATE utf8_bin NOT NULL,
   `telefon` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `kompanija`
+--
+
+INSERT INTO `kompanija` (`id_kompanija`, `id_tipkompanija`, `imekompanija`, `danocen_broj`, `e_mail`, `adresa`, `telefon`) VALUES
+(12, 2, 'Delcev Trans', 121313, 'delcev_company@yahoo.com', 'Mihajlo Pupin 13', 132123123),
+(25, 3, 'mayer', 213123, 'asdasd', '12331', 213123);
 
 -- --------------------------------------------------------
 
@@ -51,6 +59,23 @@ CREATE TABLE `korisnici` (
   `lozinka` varchar(50) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Dumping data for table `korisnici`
+--
+
+INSERT INTO `korisnici` (`id_korisnik`, `id_tipkorisnik`, `korisnicko_ime`, `lozinka`) VALUES
+(9, 1, 'dzoko', '4738019ef434f24099319565cd5185e5'),
+(12, 2, 'Delcev Trans', 'asdasd'),
+(15, 3, 'poli', '5d41402abc4b2a76b9719d911017c592'),
+(16, 2, 'fanta', 'fanta'),
+(18, 3, 'mama', 'pale'),
+(19, 3, 'fanta', 'proba'),
+(20, 4, 'koka', 'kola'),
+(23, 3, 'asdasd', 'a8f5f167f44f4964e6c998dee827110c'),
+(24, 2, 'gfhfghg', 'adsdsa'),
+(25, 3, 'asdasd', 'asdasdas'),
+(27, 2, 'hhhhhh', 'f14029217ff5e7a50cdc7e70f686cf29');
+
 -- --------------------------------------------------------
 
 --
@@ -63,8 +88,16 @@ CREATE TABLE `tip_na_vozilo` (
   `tezina` double NOT NULL,
   `zafatnina` double NOT NULL,
   `sirina` double NOT NULL,
-  `broj_na_oski` int(50) NOT NULL
+  `broj_na_oski` int(50) NOT NULL,
+  `naziv` varchar(50) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `tip_na_vozilo`
+--
+
+INSERT INTO `tip_na_vozilo` (`id_tip`, `visina`, `tezina`, `zafatnina`, `sirina`, `broj_na_oski`, `naziv`) VALUES
+(1, 4, 19, 1, 1, 3, 'mega');
 
 -- --------------------------------------------------------
 
@@ -82,6 +115,13 @@ CREATE TABLE `tovar` (
   `tip_na_potrebno_vozilo` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Dumping data for table `tovar`
+--
+
+INSERT INTO `tovar` (`id_tovar`, `id_kompanija`, `utovarno_mesto`, `istovarno_mesto`, `tezina`, `cena`, `tip_na_potrebno_vozilo`) VALUES
+(1, 12, 'asdasdasd', 'asdasd', 12313, 123123, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -96,6 +136,13 @@ CREATE TABLE `tura` (
   `id_vozilo` int(50) NOT NULL,
   `id_vozac` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `tura`
+--
+
+INSERT INTO `tura` (`id_tura`, `id_spedicija`, `id_prevoznik`, `id_tovar`, `id_vozilo`, `id_vozac`) VALUES
+(0, 25, 12, 1, 1, 9);
 
 -- --------------------------------------------------------
 
@@ -131,6 +178,13 @@ CREATE TABLE `vozac` (
   `tip_na_vozacka` varchar(50) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Dumping data for table `vozac`
+--
+
+INSERT INTO `vozac` (`id_vozac`, `id_kompanija`, `ime_vozac`, `tip_na_vozacka`) VALUES
+(9, 12, 'Dzoko Misev', 'B');
+
 -- --------------------------------------------------------
 
 --
@@ -146,6 +200,13 @@ CREATE TABLE `vozilo` (
   `tip_na_prikolka` varchar(50) COLLATE utf8_bin NOT NULL,
   `registracija` varchar(50) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `vozilo`
+--
+
+INSERT INTO `vozilo` (`id_vozilo`, `id_kompanija`, `tip_na_vozilo`, `euro_standard`, `broj_na_sasija`, `tip_na_prikolka`, `registracija`) VALUES
+(1, 12, 1, 5, 13133, 'asdasd', '1232131');
 
 --
 -- Indexes for dumped tables
@@ -219,31 +280,31 @@ ALTER TABLE `vozilo`
 -- AUTO_INCREMENT for table `kompanija`
 --
 ALTER TABLE `kompanija`
-  MODIFY `id_kompanija` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kompanija` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `korisnici`
 --
 ALTER TABLE `korisnici`
-  MODIFY `id_korisnik` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_korisnik` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `tip_na_vozilo`
 --
 ALTER TABLE `tip_na_vozilo`
-  MODIFY `id_tip` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tip` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tovar`
 --
 ALTER TABLE `tovar`
-  MODIFY `id_tovar` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tovar` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `vozilo`
 --
 ALTER TABLE `vozilo`
-  MODIFY `id_vozilo` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_vozilo` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -253,7 +314,7 @@ ALTER TABLE `vozilo`
 -- Constraints for table `kompanija`
 --
 ALTER TABLE `kompanija`
-  ADD CONSTRAINT `id_kompanija` FOREIGN KEY (`id_kompanija`) REFERENCES `korisnici` (`id_korisnik`),
+  ADD CONSTRAINT `id_kompanija` FOREIGN KEY (`id_kompanija`) REFERENCES `korisnici` (`id_korisnik`) ON DELETE CASCADE,
   ADD CONSTRAINT `id_tipkompanija` FOREIGN KEY (`id_tipkompanija`) REFERENCES `korisnici` (`id_tipkorisnik`);
 
 --

@@ -8,6 +8,16 @@
   <link rel="stylesheet" href="<?= base_url()?>/pomosno/futer/futer.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <?php if(isset($css_files)){
+                foreach($css_files as $file)
+	            echo "<link type='text/css' rel='stylesheet' href='$file' />\n";
+            }
+    
+            if(isset($js_files)){
+            foreach($js_files as $file)
+	           echo "<script src='$file'></script>\n";
+            }
+        ?>
 </head>
 <body style="height:100%">
    <header>
