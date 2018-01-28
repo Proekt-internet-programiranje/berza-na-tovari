@@ -20,10 +20,10 @@ class Spedicija extends CI_Controller{
     
     public function vnesi_tovar()
     {
-        $tabela = new grocery_CRUD();
         $id=$this->session->userdata('id_korisnik');
+        $tabela = new grocery_CRUD();
         $tabela->set_table('tovar');
-        $tabela->set_relation('id_kompanija','kompanija','imekompanija');
+        $tabela->set_relation('id_kompanija','kompanija','imekompanija',array('id_kompanija' => $id));
         $tabela->set_relation('tip_na_potrebno_vozilo','tip_na_vozilo','naziv');
         $tabela->set_theme('datatables');
         $tabela->set_language('makedonski');
@@ -37,11 +37,10 @@ class Spedicija extends CI_Controller{
         $tabela->display_as('cena','Цена');
         $tabela->display_as('tip_na_potrebno_vozilo','Потребно возило');
         $tabela->where('imekompanija',($this->session->userdata('imekompanija')));
-        $tabela->callback_before_insert(array($this,'smeni_id'));
-        //$tabela->field_type('id_kompanija','invisible',$id);
-        $tabela->callback_add_field('id_kompanija', function () { 
-            $ime=$this->session->userdata('imekompanija');
-            return '<input type="text" maxlength="50" value="'.$ime.'" name="id_kompanija">'; });
+        //$tabela->callback_before_insert(array($this,'smeni_id'));
+        //$tabela->callback_add_field('id_kompanija', function () { 
+            //$ime=$this->session->userdata('imekompanija');
+            //return '<input type="text" maxlength="50" value="'.$ime.'" name="id_kompanija">'; });
         $this->prikazi($tabela->render());
     }
     function smeni_id($vlez, $primary_key = null)
