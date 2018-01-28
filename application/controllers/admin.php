@@ -8,7 +8,7 @@ class Admin extends CI_Controller{
 		$this->load->helper('url');
         $this->load->library('grocery_CRUD');
         if(($this->session->userdata('uloga'))!='Admin'){
-            $this->session->set_flashdata('poraka', 'Немате пристап до администраторскиот панел');
+            $this->session->set_flashdata('pristap', 'Немате пристап до администраторскиот панел');
             redirect('najava');
         }
     }
@@ -89,6 +89,7 @@ class Admin extends CI_Controller{
     public function vozilo()
     {
         $tabela = new grocery_CRUD();
+        $tabela->set_table('vozilo');
         $tabela->set_relation('id_kompanija','kompanija','imekompanija');
         $tabela->set_relation('tip_na_vozilo','tip_na_vozilo','naziv');
         $tabela->set_theme('datatables');

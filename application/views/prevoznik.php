@@ -9,3 +9,8 @@
     </ul>
   </div>
 </nav>
+<h1>
+    <?php if(isset($_SESSION)) {
+           echo $this->session->flashdata('poraka');
+           } ?>
+</h1>
