@@ -26,6 +26,37 @@ class Najava_model extends CI_Model{
         } else return $rezultat;
     }
     
+    public function vozacreg($korisnik){
+        $korisnik_podatoci = array('id_tipkorisnik' => $korisnik['id_tipkorisnik'],
+                                   'korisnicko_ime' => $korisnik['korisnicko_ime'],
+                                   'lozinka'        => md5($korisnik['lozinka']));
+
+                                  // print_r($korisnik_podatoci); 
+        //dobieni se podatocite, slede proverka dali postoe takov korisnik
+
+        
+        if($this->najava->proveri_dali_postoi($korisnik)){
+            if($this->db->insert('korisnici', $korisnik_podatoci)){
+                $this->db->select('id_korisnik');
+                $this->db->from('korisnici');
+                $this->db->where('korisnicko_ime',$korisnik['korisnicko_ime']);
+                $rezultat=$this->db->get()->row();
+                $korisnik_id=$rezultat->id_korisnik;
+                //vneseno korisnik i dobieno idto na korisniko
+                $vozac_podatoci = array('id_vozac'    => $korisnik_id,
+                                            'id_kompanija' => $korisnik['id_kompanija'],
+                                            'ime_vozac'    => $korisnik['ime_vozac'],
+                                            'tip_na_vozacka'    => $korisnik['tip_na_vozacka']
+                                   );
+                if($this->db->insert('vozac',$vozac_podatoci)){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } else return false; 
+    }
+
     public function registracija($korisnik){
         $korisnik_podatoci = array('id_tipkorisnik' => $korisnik['uloga'],
                                    'korisnicko_ime' => $korisnik['korisnicko_ime'],
