@@ -67,6 +67,14 @@ class Najava_model extends CI_Model{
         }   
     }
     
+    public function prevoznici()
+    {
+        $this->db->select('*');
+        $this->db->where('id_tipkompanija','2');
+        $query = $this->db->get('kompanija');
+        return $query->result();
+    }
+    
     function __destruct() {
         $this->db->close();
     }

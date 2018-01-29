@@ -72,15 +72,19 @@ class Spedicija extends CI_Controller{
         $this->prikazi($tabela->render());
     }
     
+    
+    
     public function vnesi_tura()
     {
+        $prevoznik_id=$_SESSION['prevoznikid'];
+        $id=$this->session->userdata('id_korisnik');
         $tabela = new grocery_CRUD();
         $tabela->set_table('tura');
-        $tabela->set_relation('id_prevoznik','kompanija','imekompanija');
-        $tabela->set_relation('id_spedicija','kompanija','imekompanija');
+        $tabela->set_relation('id_prevoznik','kompanija','imekompanija',array('id_kompanija' => $prevoznik_id));
+        $tabela->set_relation('id_spedicija','kompanija','imekompanija',array('id_kompanija' => $id));
         $tabela->set_relation('id_tovar','tovar','id_tovar');
         $tabela->set_relation('id_vozac','vozac','ime_vozac');
-        $tabela->set_relation('id_vozilo','vozilo','registracija');
+        $tabela->set_relation('id_vozilo','vozilo','registracija',array('id_kompanija' => $prevoznik_id));
         $tabela->columns('id_prevoznik','id_spedicija','id_tovar','id_vozac','id_vozilo');
         $tabela->fields('id_prevoznik','id_spedicija','id_tovar','id_vozac','id_vozilo');
         $tabela->display_as('id_prevoznik','Превозник');
@@ -92,11 +96,12 @@ class Spedicija extends CI_Controller{
         $tabela->set_language('makedonski');
         $tabela->fields('id_prevoznik','id_spedicija','id_tovar','id_vozilo','id_vozac');
         $tabela->where('id_spedicija',($this->session->userdata('id_korisnik')));
-        $tabela->callback_add_field('id_spedicija', function () { 
-            $ime=$this->session->userdata('imekompanija');
-            return '<input type="text" maxlength="50" value="'.$ime.'" name="id_spedicija">'; });
-        $tabela->callback_before_insert(array($this,'smeni_id_spedicija'));
+        //$tabela->callback_add_field('id_spedicija', function () { 
+            //$ime=$this->session->userdata('imekompanija');
+            //return '<input type="text" maxlength="50" value="'.$ime.'" name="id_spedicija">'; });
+        //$tabela->callback_before_insert(array($this,'smeni_id_spedicija'));
         $this->prikazi($tabela->render());
+
     }
     
     function smeni_id_spedicija($vlez, $primary_key = null)
@@ -105,5 +110,30 @@ class Spedicija extends CI_Controller{
 	    return $vlez;
 	   
     }
+    
+    function prevoznici()
+    {
+        $this->load->model('najava_model','najava');
+        $rezultat = $this->najava->prevoznici();
+        $prevoznici1 = array();
+        foreach($rezultat as $red) 
+        {
+        $tmp['id'] = $red->id_kompanija;
+        $tmp['naziv'] = $red->imekompanija;
+        $prevoznici1[] = $tmp;
+        }
+        
+        
+        $this->load->view('prevoznici',array('prevoznik' => $prevoznici1));
+        //print_r($prevoznici);
+    }
+    
+    public function obraboti_prevoznikid()
+    {   if($_POST)
+        $_SESSION['prevoznikid']= $_POST['prevoznik'];
+        $url = site_url();
+        redirect("/spedicija/vnesi_tura/add");
+    }
+    
     
 }
