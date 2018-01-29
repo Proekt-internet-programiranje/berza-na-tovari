@@ -13,7 +13,7 @@
 <?php
 $currentURL = current_url();
 ?>
-<?php if ($currentURL=='http://[::1]/berza-na-tovari/index.php/prevoznik/dodadi_vozac') : ?>
+<?php if ($currentURL==site_url('prevoznik/dodadi_vozac')) : ?>
         
 <form action="<?= site_url('prevoznik/vozacreg') ?>" method="post" >
 

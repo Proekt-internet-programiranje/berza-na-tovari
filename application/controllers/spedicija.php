@@ -4,6 +4,8 @@ class Spedicija extends CI_Controller{
     
     function __construct() {
         parent::__construct();
+        if($this->session->userdata('uloga')!='Spedicija')
+            redirect('najava');
     }
     
     public function index()
@@ -125,13 +127,11 @@ class Spedicija extends CI_Controller{
         
         
         $this->load->view('prevoznici',array('prevoznik' => $prevoznici1));
-        //print_r($prevoznici);
     }
     
     public function obraboti_prevoznikid()
     {   if($_POST)
         $_SESSION['prevoznikid']= $_POST['prevoznik'];
-        $url = site_url();
         redirect("/spedicija/vnesi_tura/add");
     }
     

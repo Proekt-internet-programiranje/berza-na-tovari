@@ -5,6 +5,8 @@ class Prevoznik extends CI_Controller{
     function __construct() {
         parent::__construct();
         $this->load->model('najava_model', 'najava');
+        if($this->session->userdata('uloga')!='Prevoznik')
+            redirect('najava');
     }
     
     public function index()
