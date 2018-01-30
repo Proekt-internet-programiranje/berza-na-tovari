@@ -124,7 +124,21 @@ class Prevoznik extends CI_Controller{
 
         public function vidivozac()
         {
-            $this->load->view('vidivozac');
+            $this->load->model('najava_model','najava');
+            $rezultat = $this->najava->zemi_id_vozac($this->session->userdata('id_korisnik'));
+            $this->load->view('vidivozac',array('rezultat' => $rezultat));
         }
-    
+        
+        public function obraboti_vozac()
+        {
+            $this->load->model('najava_model','najava');
+            $rezultat = $this->najava->obraboti_vozac('47');
+            foreach($rezultat as $lokacija)
+            {
+                $lat=$lokacija->Latitude;
+                $long=$lokacija->Longitude;
+            }
+            //print_r($rezultat);
+            $this->load->view('iframelokacija',array('lat' => $lat, 'long' => $long));
+        }
     }

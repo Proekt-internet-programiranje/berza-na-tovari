@@ -58,7 +58,6 @@ $currentURL = current_url();
 
 <input  type="submit" value="Внеси возач">
 </form>
-</frameset>
 <?php endif; ?>
   </div>
   <script>
@@ -84,9 +83,7 @@ function w3_close() {
     mySidebar.style.display = "none";
     overlayBg.style.display = "none";
 }
-
-</body>
-</html>
-<?php 
+    </script>
+<?php if(isset($output))
 echo $output;
 $this->view('footer'); ?>
