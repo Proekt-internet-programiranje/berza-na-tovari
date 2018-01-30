@@ -54,7 +54,7 @@ class Prevoznik extends CI_Controller{
         $tabela->set_relation('tip_na_vozilo','tip_na_vozilo','naziv');
         $tabela->set_theme('datatables');
         $tabela->set_language('makedonski');
-        $tabela->columns('id_kompanija','tip_na_vozilo','euro_standard','broj_na_sasija','tip_na_prikolka','registracija');
+        $tabela->columns('id_kompanija','tip_na_vozilo','euro_standard','broj_na_sasija','tip_na_prikolka','registracija','ima_tura');
         $tabela->display_as('id_kompanija','Назив на компанија');
         $tabela->display_as('tip_na_vozilo','Тип на возило');
         $tabela->display_as('euro_standard','ЕУР стандард');
@@ -63,11 +63,7 @@ class Prevoznik extends CI_Controller{
         $tabela->display_as('registracija','Регистарски ознаки');
         $tabela->set_subject('Возила');
         $tabela->where('imekompanija',($this->session->userdata('imekompanija')));
-        //$tabela->callback_before_insert(array($this,'smeni_id'));
-        //$tabela->field_type('id_kompanija','invisible',$id);
-        //$tabela->callback_add_field('id_kompanija', function () { 
-          //  $ime=$this->session->userdata('imekompanija');
-            //return '<input type="text" maxlength="50" value="'.$ime.'" name="id_kompanija">'; });
+        $tabela->field_type('ima_tura','hidden','ne');
         $this->prikazi($tabela->render());
     }
 

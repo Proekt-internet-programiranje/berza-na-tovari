@@ -103,6 +103,7 @@ class Admin extends CI_Controller{
         $tabela->display_as('tip_na_prikolka','Приколка');
         $tabela->display_as('registracija','Регистарски ознаки');
         $tabela->display_as('ima_tura','Слободно');
+        $tabela->field_type('ima_tura','hidden','ne');
         $tabela->set_subject('Возила');
         $this->prikazi($tabela->render());
     }
