@@ -44,6 +44,7 @@ class Vozac extends CI_Controller{
         $tabela->where('zavrsena','ne');
         $tabela->unset_add();
         $tabela->unset_delete();
+        $tabela->edit_fields('zavrsena');
         $tabela->callback_after_update(array($this,'smeni_vozac'));
         $this->prikazi($tabela->render());
         
@@ -84,6 +85,22 @@ class Vozac extends CI_Controller{
         $this->prikazi($tabela->render());
        
         
+    }
+
+    public function lokacija ()
+    {
+        $this->load->view('lokacija');
+    }
+    public function lokacijadb ()
+    {
+        $id=$this->session->userdata('id_korisnik');
+        if (isset($_GET["w1"]) && isset($_GET["w2"])) {
+//echo $_GET["w1"];
+//echo $_GET["w2"];
+
+$this->db->query("insert into lokacija (id_vozac, Latitude, Longitude) values ($id,'". $_GET["w1"]."', '". $_GET["w2"]."')");
+        }
+        $this->load->view('lokacija');
     }
     
     

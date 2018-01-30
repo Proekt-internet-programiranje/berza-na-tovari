@@ -24,6 +24,7 @@
 <a  class="w3-bar-item w3-button" href="<?= site_url()?>/prevoznik/dodadi_vozac">Додади возач</a>
 <a class="w3-bar-item w3-button" href="<?= site_url()?>/prevoznik/objavi_vozilo">Објави возило</a>
 <a class="w3-bar-item w3-button" href="<?= site_url()?>/prevoznik/pregled_tovari">Преглед на товари</a>
+<a class="w3-bar-item w3-button" href="<?= site_url()?>/prevoznik/vidivozac">Локација на возач</a>
 </nav>
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
