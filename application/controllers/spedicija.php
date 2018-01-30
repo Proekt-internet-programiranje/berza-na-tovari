@@ -45,12 +45,6 @@ class Spedicija extends CI_Controller{
             //return '<input type="text" maxlength="50" value="'.$ime.'" name="id_kompanija">'; });
         $this->prikazi($tabela->render());
     }
-    function smeni_id($vlez, $primary_key = null)
-    {
-	    $vlez['id_kompanija'] = $this->session->userdata('id_korisnik');
-	    return $vlez;
-	   
-    }
     
     public function pregled_vozila()
     {
@@ -88,7 +82,7 @@ class Spedicija extends CI_Controller{
         $tabela->set_relation('id_vozac','vozac','ime_vozac',array('id_kompanija' => $prevoznik_id));
         $tabela->set_relation('id_vozilo','vozilo','registracija',array('id_kompanija' => $prevoznik_id));
         $tabela->columns('id_prevoznik','id_spedicija','id_tovar','id_vozac','id_vozilo');
-        $tabela->fields('id_prevoznik','id_spedicija','id_tovar','id_vozac','id_vozilo');
+        //$tabela->fields('id_prevoznik','id_spedicija','id_tovar','id_vozac','id_vozilo');
         $tabela->display_as('id_prevoznik','Превозник');
         $tabela->display_as('id_spedicija','Шпедиција');
         $tabela->display_as('id_tovar','Шифра на товар');
@@ -98,20 +92,20 @@ class Spedicija extends CI_Controller{
         $tabela->set_language('makedonski');
         $tabela->fields('id_prevoznik','id_spedicija','id_tovar','id_vozilo','id_vozac');
         $tabela->where('id_spedicija',($this->session->userdata('id_korisnik')));
+        $tabela->callback_after_insert(array($this, 'smeni_tovar'));
         //$tabela->callback_add_field('id_spedicija', function () { 
             //$ime=$this->session->userdata('imekompanija');
             //return '<input type="text" maxlength="50" value="'.$ime.'" name="id_spedicija">'; });
         //$tabela->callback_before_insert(array($this,'smeni_id_spedicija'));
         $this->prikazi($tabela->render());
-
     }
     
-    function smeni_id_spedicija($vlez, $primary_key = null)
+    public function smeni_tovar($post_array,$primary_key)
     {
-	    $vlez['id_spedicija'] = $this->session->userdata('id_korisnik');
-	    return $vlez;
-	   
+        $this->db->query("update tovar set ima_tura='da' where tovar.id_tovar='".$post_array["id_tovar"]."'");
     }
+    
+    
     
     function prevoznici()
     {

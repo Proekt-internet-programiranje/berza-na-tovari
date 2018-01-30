@@ -114,6 +114,7 @@ class Admin extends CI_Controller{
         $tabela->set_theme('datatables');
         $tabela->set_language('makedonski');
         $tabela->columns('id_kompanija','utovarno_mesto','istovarno_mesto','tezina','cena','tip_na_potrebno_vozilo');
+        $tabela->fields('id_kompanija','utovarno_mesto','istovarno_mesto','tezina','cena','tip_na_potrebno_vozilo','ima_tura');
         $tabela->display_as('id_kompanija','Назив на компанија');
         $tabela->display_as('tip_na_vozilo','Тип на возило');
         $tabela->display_as('utovarno_mesto','Место на утовар');
@@ -121,8 +122,10 @@ class Admin extends CI_Controller{
         $tabela->display_as('tezina','Тежина');
         $tabela->display_as('cena','Цена');
         $tabela->display_as('tip_na_potrebno_vozilo','Потребно возило');
+        $tabela->field_type('ima_tura', 'hidden', 'ne');
         $this->prikazi($tabela->render());
     }
+    
     
     public function tura()
     {

@@ -97,6 +97,7 @@ class Prevoznik extends CI_Controller{
         $tabela->unset_add();
         $tabela->unset_edit();
         $tabela->unset_delete();
+        $tabela->where('ima_tura','ne');
         $this->prikazi($tabela->render());
     }
 
