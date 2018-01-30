@@ -48,6 +48,7 @@ class Najava_model extends CI_Model{
                                             'ime_vozac'    => $korisnik['ime_vozac'],
                                             'tip_na_vozacka'    => $korisnik['tip_na_vozacka']
                                    );
+                                   
                 if($this->db->insert('vozac',$vozac_podatoci)){
                     return true;
                 } else {

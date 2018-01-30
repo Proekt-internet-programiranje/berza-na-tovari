@@ -22,7 +22,7 @@
  
   <a class="w3-bar-item w3-button" href="<?= site_url()?>/vozac/pregled_na_tura">Преглед на тура</a>
   <a class="w3-bar-item w3-button" href="<?= site_url()?>/vozac/pregled_na_turi">Преглед на тури</a>
-  <a class="w3-bar-item w3-button" href="<?= site_url()?>/vozac/sostojba_na_vozilo">Ажурирање на состојба на возило</a>
+  
 </nav>
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
