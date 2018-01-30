@@ -7,7 +7,8 @@
   left:0;
   padding:0px;
    z-index: 3;
-  background-color: gray;
+  background: #0d0c4e;
+    color:white;
  
   
 }
@@ -19,8 +20,3 @@
 <div class="footer">
 <p align="center"><b>©Copyright. All rights reserved.</b></p>
 </div>
-
-</body>
-</html>
-</body>
-</html>

@@ -18,6 +18,7 @@
 <!-- AdminLTE Skins. Choose a skin from the css/skins 
      folder instead of downloading all of them to reduce the load. -->
 <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <?php if(isset($css_files)){
                 foreach($css_files as $file)
@@ -30,9 +31,9 @@
             }
         ?>
 </head>
-<body>
+<body style="background-color:#f5f5f5">
 <div class="w3-on-top">
-  <div class="w3-bar w3-grey  w3-padding w3-card">
+  <div class="w3-bar w3-padding w3-card" style="background-color:#dc331e; color:white">
   <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
     <a href="<?= site_url()?>" class="w3-bar-item w3-button"><b>Берза </b>на товари</a>
     <div class="w3-right w3-hide-small">
