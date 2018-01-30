@@ -18,6 +18,7 @@
 <!-- AdminLTE Skins. Choose a skin from the css/skins 
      folder instead of downloading all of them to reduce the load. -->
 <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <?php if(isset($css_files)){
                 foreach($css_files as $file)
 	            echo "<link type='text/css' rel='stylesheet' href='$file' />\n";
