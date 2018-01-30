@@ -117,13 +117,12 @@ class Najava_model extends CI_Model{
     }
     
     public function obraboti_vozac($id_vozac)
-        {
-            $this->db->select('*');
-            $this->db->where('id_vozac', $id_vozac);
-            $query = $this->db->get('lokacija');
-            return $query->result();
-           
-        }
+    {
+        $this->db->select('*');
+        $this->db->where('id_vozac', $id_vozac);
+        $query = $this->db->get('lokacija');
+        return $query->result();
+    }
     
     function __destruct() {
         $this->db->close();

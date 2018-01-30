@@ -138,7 +138,6 @@ class Prevoznik extends CI_Controller{
                 $lat=$lokacija->Latitude;
                 $long=$lokacija->Longitude;
             }
-            //print_r($rezultat);
             $this->load->view('iframelokacija',array('lat' => $lat, 'long' => $long));
         }
     }
