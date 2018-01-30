@@ -30,7 +30,7 @@ class Spedicija extends CI_Controller{
         $tabela->set_theme('datatables');
         $tabela->set_language('makedonski');
         $tabela->columns('id_kompanija','utovarno_mesto','istovarno_mesto','tezina','cena','tip_na_potrebno_vozilo');
-        $tabela->fields('id_kompanija','utovarno_mesto','istovarno_mesto','tezina','cena','tip_na_potrebno_vozilo');
+        $tabela->fields('id_kompanija','utovarno_mesto','istovarno_mesto','tezina','cena','tip_na_potrebno_vozilo','ima_tura');
         $tabela->display_as('id_kompanija','Назив на компанија');
         $tabela->display_as('tip_na_vozilo','Тип на возило');
         $tabela->display_as('utovarno_mesto','Место на утовар');
@@ -39,6 +39,7 @@ class Spedicija extends CI_Controller{
         $tabela->display_as('cena','Цена');
         $tabela->display_as('tip_na_potrebno_vozilo','Потребно возило');
         $tabela->where('imekompanija',($this->session->userdata('imekompanija')));
+        $tabela->field_type('ima_tura','hidden','ne');
         //$tabela->callback_before_insert(array($this,'smeni_id'));
         //$tabela->callback_add_field('id_kompanija', function () { 
             //$ime=$this->session->userdata('imekompanija');
@@ -51,7 +52,7 @@ class Spedicija extends CI_Controller{
         $tabela = new grocery_CRUD();
         $tabela->set_table('vozilo');
         $tabela->set_relation('id_kompanija','kompanija','imekompanija');
-        $tabela->set_relation('tip_na_vozilo','tip_na_vozilo','naziv');
+        $tabela->set_relation('tip_na_vozilo','tip_na_vozilo','naziv',array('ima_tura' => 'ne'));
         $tabela->set_theme('datatables');
         $tabela->set_language('makedonski');
         $tabela->columns('id_kompanija','tip_na_vozilo','euro_standard','broj_na_sasija','tip_na_prikolka','registracija');
@@ -65,6 +66,7 @@ class Spedicija extends CI_Controller{
         $tabela->unset_add();
         $tabela->unset_edit();
         $tabela->unset_delete();
+        $tabela->where('ima_tura','ne');
         $this->prikazi($tabela->render());
     }
     
@@ -89,9 +91,10 @@ class Spedicija extends CI_Controller{
         $tabela->display_as('id_vozilo','Возило');
         $tabela->set_theme('datatables');
         $tabela->set_language('makedonski');
-        $tabela->fields('id_prevoznik','id_spedicija','id_tovar','id_vozilo','id_vozac');
+        $tabela->fields('id_prevoznik','id_spedicija','id_tovar','id_vozilo','id_vozac','zavrsena');
         $tabela->where('id_spedicija',($this->session->userdata('id_korisnik')));
         $tabela->callback_after_insert(array($this, 'smeni_tovar'));
+        $tabela->field_type('zavrsena','hidden','ne');
         //$tabela->callback_add_field('id_spedicija', function () { 
             //$ime=$this->session->userdata('imekompanija');
             //return '<input type="text" maxlength="50" value="'.$ime.'" name="id_spedicija">'; });
