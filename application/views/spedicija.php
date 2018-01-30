@@ -54,8 +54,8 @@ function w3_close() {
     overlayBg.style.display = "none";
 }
 </script>
-</body>
-</html>
+
 <?php if(isset($output))
 echo $output;
-$this->view('footer'); ?>
+if (current_url()!=site_url('spedicija/prevoznici'))
+     $this->view('footer'); ?>
