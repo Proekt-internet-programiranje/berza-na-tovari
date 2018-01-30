@@ -78,11 +78,10 @@ class Spedicija extends CI_Controller{
         $tabela->set_table('tura');
         $tabela->set_relation('id_prevoznik','kompanija','imekompanija',array('id_kompanija' => $prevoznik_id));
         $tabela->set_relation('id_spedicija','kompanija','imekompanija',array('id_kompanija' => $id));
-        $tabela->set_relation('id_tovar','tovar','id_tovar',array('id_kompanija' => $id));
+        $tabela->set_relation('id_tovar','tovar','id_tovar',array('id_kompanija' => $id,'ima_tura' => 'ne'));
         $tabela->set_relation('id_vozac','vozac','ime_vozac',array('id_kompanija' => $prevoznik_id));
         $tabela->set_relation('id_vozilo','vozilo','registracija',array('id_kompanija' => $prevoznik_id));
         $tabela->columns('id_prevoznik','id_spedicija','id_tovar','id_vozac','id_vozilo');
-        //$tabela->fields('id_prevoznik','id_spedicija','id_tovar','id_vozac','id_vozilo');
         $tabela->display_as('id_prevoznik','Превозник');
         $tabela->display_as('id_spedicija','Шпедиција');
         $tabela->display_as('id_tovar','Шифра на товар');
