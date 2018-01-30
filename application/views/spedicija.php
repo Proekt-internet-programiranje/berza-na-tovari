@@ -25,7 +25,6 @@
   <a class="w3-bar-item w3-button" href="<?= site_url()?>/spedicija/vnesi_tovar">Внесување на товар</a>
   <a class="w3-bar-item w3-button" href="<?= site_url()?>/spedicija/pregled_vozila">Преглед на слободни возила</a>
   <a class="w3-bar-item w3-button" href="<?= site_url()?>/spedicija/prevoznici">Внесување на тура</a>
-    </ul>
 </nav>
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
