@@ -105,6 +105,8 @@ class Spedicija extends CI_Controller{
     public function smeni_tovar($post_array,$primary_key)
     {
         $this->db->query("update tovar set ima_tura='da' where tovar.id_tovar='".$post_array["id_tovar"]."'");
+        $this->db->query("update vozilo set ima_tura='da' where vozilo.id_vozilo='".$post_array["id_vozilo"]."'");
+        $this->db->query("update vozac set ima_tura='da' where vozac.id_vozac='".$post_array["id_vozac"]."'");
     }
     
     
