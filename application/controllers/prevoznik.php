@@ -124,7 +124,7 @@ class Prevoznik extends CI_Controller{
 
         public function vidivozac()
         {
-            $this->load->view('vidivozac.php');
+            $this->load->view('vidivozac');
         }
     
     }

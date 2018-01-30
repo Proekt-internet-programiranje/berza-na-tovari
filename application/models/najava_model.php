@@ -48,8 +48,9 @@ class Najava_model extends CI_Model{
                                             'ime_vozac'    => $korisnik['ime_vozac'],
                                             'tip_na_vozacka'    => $korisnik['tip_na_vozacka']
                                    );
-                                   
+                                    
                 if($this->db->insert('vozac',$vozac_podatoci)){
+                    $this->db->query("insert into lokacija (id_vozac, Latitude, Longitude) values ($korisnik_id,0, 0)");
                     return true;
                 } else {
                     return false;

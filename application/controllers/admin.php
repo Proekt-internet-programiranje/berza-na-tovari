@@ -46,6 +46,7 @@ class Admin extends CI_Controller{
         $tabela->fields('id_tipkorisnik','korisnicko_ime','lozinka');
         $tabela->change_field_type('lozinka','password');
         $tabela->callback_before_insert(array($this,'kriptiraj_lozinka'));
+        $tabela->callback_after_insert(array($this, 'dodadi_lok'));
         $tabela->set_theme('datatables');
         $this->prikazi($tabela->render());
 	}
@@ -84,8 +85,15 @@ class Admin extends CI_Controller{
         $tabela->display_as('ime_vozac','Име и презиме');
         $tabela->display_as('tip_na_vozacka','Возачка дозвола');
         $tabela->display_as('ima_tura','Слободен');
+        $tabela->callback_after_insert(array($this, 'dodadi_lok'));
         $this->prikazi($tabela->render());
     }
+
+    public function dodadi_lok($post_array,$primary_key)
+    {
+        $this->db->query("insert into lokacija (id_vozac, Latitude, Longitude) values ('".$post_array["id_vozac"]."',0, 0)");
+    }
+
     
     public function vozilo()
     {
