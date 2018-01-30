@@ -56,6 +56,6 @@ function w3_close() {
 </script>
 </body>
 </html>
-<?php 
+<?php if(isset($output))
 echo $output;
 $this->view('footer'); ?>
