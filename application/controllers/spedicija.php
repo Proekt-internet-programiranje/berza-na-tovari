@@ -52,7 +52,7 @@ class Spedicija extends CI_Controller{
         $tabela = new grocery_CRUD();
         $tabela->set_table('vozilo');
         $tabela->set_relation('id_kompanija','kompanija','imekompanija');
-        $tabela->set_relation('tip_na_vozilo','tip_na_vozilo','naziv',array('ima_tura' => 'ne'));
+        $tabela->set_relation('tip_na_vozilo','tip_na_vozilo','naziv');
         $tabela->set_theme('datatables');
         $tabela->set_language('makedonski');
         $tabela->columns('id_kompanija','tip_na_vozilo','euro_standard','broj_na_sasija','tip_na_prikolka','registracija');
