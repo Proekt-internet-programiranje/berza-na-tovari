@@ -106,7 +106,7 @@ class Vozac extends CI_Controller{
 $this->db->query("update lokacija set Latitude='". $_GET["w1"]."' , Longitude='". $_GET["w2"]."' where id_vozac=$id");
         }
         
-       // $this->load->view('lokacija');
+        $this->load->view('lokacija');
     }
     public function lokacijadb1 ()
     {

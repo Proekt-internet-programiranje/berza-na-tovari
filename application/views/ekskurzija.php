@@ -10,13 +10,13 @@
 var x = document.getElementById("demo");
 
 
-function getLocation() {
+setTimeout(function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
-}
+}, 5000);
 
 function showPosition(position) {
     x.innerHTML = "Latitude: " + position.coords.latitude + 

@@ -29,6 +29,6 @@ function showPosition(position) {
 
 
 </script>
-<iframe src="http://[::1]/berza-na-tovari/index.php/vozac/ekskurzija" style="display: none;"></iframe>
+<iframe src="<?php echo site_url('vozac/ekskurzija');?>" style="display: none;"></iframe>
 
 <?php $this->load->view('footer'); ?>
