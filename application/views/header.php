@@ -30,7 +30,6 @@ section {
   position: absolute;
   top:0; left:0;
   width: 100%; }
-
 </style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -50,10 +49,9 @@ section {
 <div class="w3-on-top sticky ">
 <div class="w3-bar  w3-deep-orange  w3-padding w3-card">
   <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large" style="background-color:deep-orange; color:white" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-  <a href="<?= site_url()?>" class="w3-bar-item w3-button" style="text-shadow:1px 1px 0 #444"><b>Берза на товари</b></a>
+  <a href="<?= site_url()?>" class="w3-btn w3-bar-item w3-button w3-hover-deep-orange" style="text-shadow:1px 1px 0 #444"><b>Берза на товари</b></a>
     <div class="w3-right w3-hide-small">
-      <a href="#" class="w3-bar-item w3-button" style="text-shadow:1px 1px 0 #444">Дома</a>
-      <a href="<?= site_url()?>/pocetna/odjavi_se" class="w3-bar-item w3-button" style="text-shadow:1px 1px 0 #444">Одјави се</a>
+      <a href="<?= site_url()?>/pocetna/odjavi_se" class="w3-btn w3-bar-item w3-button w3-hover-deep-orange" style="text-shadow:1px 1px 0 #444">Одјави се</a>
     </div>
   </div>
 </div>

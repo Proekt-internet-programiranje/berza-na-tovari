@@ -15,6 +15,7 @@
 }
 </style>
 <body>
+
 <nav class="w3-sidebar w3-card w3-bar-block w3-collapse w3-medium w3-animate-left" style="background-color:#262626; color:white" id="mySidebar">
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
     <i class="fa fa-remove"></i>
@@ -27,10 +28,11 @@
   <a class="w3-bar-item w3-button" href="<?= site_url()?>/admin/tovar">Товари</a>
   <a class="w3-bar-item w3-button" href="<?= site_url()?>/admin/tura">Тури</a>
 </nav>
+
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <div class="w3-main" style="margin-left:210px">
-  <div class="w3-row w3-padding-10">
+  <div class="w3-row w3-padding-10" style="margin-top:">
   </div>
   <script>
 // Get the Sidebar
