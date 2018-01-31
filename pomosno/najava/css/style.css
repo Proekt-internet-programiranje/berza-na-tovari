@@ -14,7 +14,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #1ab188;
+  color: #ff7300;
   -webkit-transition: .5s ease;
   transition: .5s ease;
 }
@@ -57,11 +57,11 @@ a:hover {
   transition: .5s ease;
 }
 .tab-group li a:hover {
-  background: #179b77;
+  background: #ffa048;
   color: #ffffff;
 }
 .tab-group .active a {
-  background: #1ab188;
+  background: #ff7300;
   color: #ffffff;
 }
 
@@ -90,7 +90,7 @@ label {
 }
 label .req {
   margin: 2px;
-  color: #1ab188;
+  color: #ff7300;
 }
 
 label.active {
@@ -182,14 +182,14 @@ textarea {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .1em;
-  background: #1ab188;
+  background: #ff7300;
   color: #ffffff;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   -webkit-appearance: none;
 }
 .button:hover, .button:focus {
-  background: #179b77;
+  background: #ffa048;
 }
 
 .button-block {
