@@ -7,7 +7,6 @@
   left:0;
   padding:0px;
    z-index: 3;
-  background: #0d0c4e;
     color:white;
  
   
@@ -17,6 +16,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="footer">
+<div class="footer w3-gray">
 <p align="center"><b>©Copyright. All rights reserved.</b></p>
 </div>
