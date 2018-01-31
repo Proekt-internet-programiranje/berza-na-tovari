@@ -43,18 +43,18 @@ $currentURL = current_url();
 
   
 <label class="w3-text-gray"><b>Име возач:</b></label>
-<input class="w3-input"  type="text" name="ime_vozac" />
+<input class="w3-input"  type="text" name="ime_vozac" required />
 
 <label class="w3-text-gray"><b>Тип на возачка дозвола:</b></label>
-<input class="w3-input"   type="text" name="tip_na_vozacka"/>
+<input class="w3-input"   type="text" name="tip_na_vozacka" required />
 
 
 <label class="w3-text-gray"><b>Корисничко име:</b></label>
-<input class="w3-input" type="text" name="korisnicko_ime"/>
+<input class="w3-input" type="text" name="korisnicko_ime" required />
 
 
 <label class="w3-text-gray"><b>Лозинка:</b></label>
-<input class="w3-input"  type="text" name="lozinka"/><br>
+<input class="w3-input"  type="text" name="lozinka" required /><br>
 
 <input  type="submit" value="Внеси возач">
 </form>

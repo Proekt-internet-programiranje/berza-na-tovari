@@ -28,7 +28,7 @@ class Prevoznik extends CI_Controller{
 
         $tabela = new grocery_CRUD();
         $tabela->set_table('vozac');
-        $tabela->set_relation('id_vozac','korisnici','korisnicko_ime',array('ima_tura' => 'ne'));
+        $tabela->set_relation('id_vozac','korisnici','korisnicko_ime');
         $tabela->set_relation('id_kompanija','kompanija','imekompanija');
         $tabela->set_theme('datatables');
         $tabela->set_language('makedonski');
