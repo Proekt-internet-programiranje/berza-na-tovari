@@ -1,4 +1,4 @@
-<?php $this->load->view('vozac'); ?>
+
 
 <button onclick="getLocation()">Ажурирај локација</button>
 
@@ -22,13 +22,12 @@ function showPosition(position) {
     x.innerHTML = "Latitude: " + position.coords.latitude + 
     "<br>Longitude: " + position.coords.longitude;
 
-    window.location.href = "lokacijadb?w1=" + position.coords.latitude + "&w2=" + position.coords.longitude;
+    window.location.href = "lokacijadb1?w1=" + position.coords.latitude + "&w2=" + position.coords.longitude;
 
 }
-
-
-
+getLocation();
 </script>
-<iframe src="http://[::1]/berza-na-tovari/index.php/vozac/ekskurzija" style="display: none;"></iframe>
 
-<?php $this->load->view('footer'); ?>
+
+
+
