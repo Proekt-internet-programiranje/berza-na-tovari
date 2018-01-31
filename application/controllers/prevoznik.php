@@ -137,12 +137,13 @@ class Prevoznik extends CI_Controller{
         public function obraboti_vozac()
         {
             $this->load->model('najava_model','najava');
-            $rezultat = $this->najava->obraboti_vozac('47');
+            $rezultat = $this->najava->obraboti_vozac($_POST['vozac']);
             foreach($rezultat as $lokacija)
             {
                 $lat=$lokacija->Latitude;
                 $long=$lokacija->Longitude;
             }
+            if(isset($lat)&&isset($long))
             $this->load->view('iframelokacija',array('lat' => $lat, 'long' => $long));
         }
     }
