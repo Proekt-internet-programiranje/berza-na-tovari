@@ -49,11 +49,11 @@ section {
 <body>
 <div class="w3-on-top sticky ">
 <div class="w3-bar  w3-deep-orange  w3-padding w3-card">
-  <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-    <a href="<?= site_url()?>" class="w3-bar-item w3-button"><b>Берза </b>на товари</a>
+  <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large" style="background-color:deep-orange; color:white" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+  <a href="<?= site_url()?>" class="w3-bar-item w3-button" style="text-shadow:1px 1px 0 #444"><b>Берза на товари</b></a>
     <div class="w3-right w3-hide-small">
-      <a href="#" class="w3-bar-item w3-button">Дома</a>
-      <a href="<?= site_url()?>/pocetna/odjavi_se" class="w3-bar-item w3-button">Одјави се</a>
+      <a href="#" class="w3-bar-item w3-button" style="text-shadow:1px 1px 0 #444">Дома</a>
+      <a href="<?= site_url()?>/pocetna/odjavi_se" class="w3-bar-item w3-button" style="text-shadow:1px 1px 0 #444">Одјави се</a>
     </div>
   </div>
 </div>
