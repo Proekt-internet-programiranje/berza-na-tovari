@@ -13,7 +13,8 @@ class Najava extends CI_Controller{
     public function index(){
         if($_POST){
             $rezultat = $this->najava->proveri_korisnik($_POST);
-            if(!empty($rezultat)){
+             if(!empty($rezultat)){
+                if(isset($rezultat->imekompanija))
                 $podatoci = [
                     'id_korisnik'        => $rezultat->id_korisnik,
                     'imekompanija'       => $rezultat->imekompanija,
@@ -23,6 +24,13 @@ class Najava extends CI_Controller{
                     'adresa'             => $rezultat->adresa,
                     'telefon'            => $rezultat->telefon
                 ];
+                else 
+                
+                $podatoci = [
+                    'id_korisnik'        => $rezultat->id_korisnik,
+                    'uloga'              => $rezultat->imeuloga
+                ];
+                    
                 $this->session->set_userdata($podatoci);
                 redirect('pocetna');
             } else {
