@@ -49,7 +49,6 @@ class Prevoznik extends CI_Controller{
         $id=$this->session->userdata('id_korisnik');
         $tabela = new grocery_CRUD();
         $tabela->set_table('vozilo');
-       // $tabela->set_relation('id_kompanija','kompanija','imekompanija');
         $tabela->set_relation('id_kompanija','kompanija','imekompanija',array('id_kompanija' => $id));
         $tabela->set_relation('tip_na_vozilo','tip_na_vozilo','naziv');
         $tabela->set_theme('datatables');
@@ -62,6 +61,12 @@ class Prevoznik extends CI_Controller{
         $tabela->display_as('tip_na_prikolka','Приколка');
         $tabela->display_as('registracija','Регистарски ознаки');
         $tabela->set_subject('Возила');
+        $tabela->set_rules('id_kompanija','required');
+        $tabela->set_rules('tip_na_vozilo','required');
+        $tabela->set_rules('euro_standard','required|integer');
+        $tabela->set_rules('broj_na_sasija','required|numeric');
+        $tabela->set_rules('tip_na_prikolka','required');
+        $tabela->set_rules('registracija','required|numeric');
         $tabela->where('imekompanija',($this->session->userdata('imekompanija')));
         $tabela->field_type('ima_tura','hidden','ne');
         $this->prikazi($tabela->render());
