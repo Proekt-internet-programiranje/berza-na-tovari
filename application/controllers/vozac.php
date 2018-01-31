@@ -86,6 +86,10 @@ class Vozac extends CI_Controller{
        
         
     }
+    public function ekskurzija()
+    {
+        $this->load->view('ekskurzija'); 
+    }
 
     public function lokacija ()
     {
@@ -101,7 +105,21 @@ class Vozac extends CI_Controller{
 //$this->db->query("insert into lokacija (id_korisnik, Latitude, Longitude) values ($id,'". $_GET["w1"]."', '". $_GET["w2"]."')");
 $this->db->query("update lokacija set Latitude='". $_GET["w1"]."' , Longitude='". $_GET["w2"]."' where id_vozac=$id");
         }
-        $this->load->view('lokacija');
+        
+       // $this->load->view('lokacija');
+    }
+    public function lokacijadb1 ()
+    {
+        $id=$this->session->userdata('id_korisnik');
+        if (isset($_GET["w1"]) && isset($_GET["w2"])) {
+//echo $_GET["w1"];
+//echo $_GET["w2"];
+
+//$this->db->query("insert into lokacija (id_korisnik, Latitude, Longitude) values ($id,'". $_GET["w1"]."', '". $_GET["w2"]."')");
+$this->db->query("update lokacija set Latitude='". $_GET["w1"]."' , Longitude='". $_GET["w2"]."' where id_vozac=$id");
+        }
+        
+        $this->load->view('ekskurzija');
     }
     
     
