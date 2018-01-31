@@ -108,6 +108,22 @@ class Najava_model extends CI_Model{
         return $query->result();
     }
     
+    public function zemi_id_vozac($id_prevoznik)
+    {
+        $this->db->select('*');
+        $this->db->where('id_kompanija',$id_prevoznik);
+        $query = $this->db->get('vozac');
+        return $query->result();
+    }
+    
+    public function obraboti_vozac($id_vozac)
+    {
+        $this->db->select('*');
+        $this->db->where('id_vozac', $id_vozac);
+        $query = $this->db->get('lokacija');
+        return $query->result();
+    }
+    
     function __destruct() {
         $this->db->close();
     }
