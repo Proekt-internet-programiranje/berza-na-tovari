@@ -17,5 +17,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <div class="footer w3-gray">
-<p align="center"><b>©Copyright. All rights reserved.</b></p>
+<p align="center"><b>СЕМИНАРСКА РАБОТА ПО ИНТЕРНЕТ ПРОГРАМИРАЊЕ. ТЕМА “Веб апликација берза на товари”
+</b></p>
 </div>
