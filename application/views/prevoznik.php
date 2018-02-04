@@ -60,6 +60,11 @@ $currentURL = current_url();
 </form>
 <?php endif; ?>
   </div>
+
+  
+
+
+
   <script>
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");
@@ -84,6 +89,22 @@ function w3_close() {
     overlayBg.style.display = "none";
 }
     </script>
+
+<div class="w3-main" style="margin-left:210px">
+  <div class="w3-row w3-padding-10">
+<?php
+$currentURL = current_url();
+$uloga=$this->session->userdata('uloga');
+?>
+<?php if ($currentURL==site_url('prevoznik')) : ?>
+
+
+<h2>Добрoдојдовте, вие сте логирани како "<?php echo $uloga; ?>" </h2>
+    
+<?php endif; ?>
+
+
+
 <?php if(isset($output))
 echo $output;
 $this->view('footer'); ?>
