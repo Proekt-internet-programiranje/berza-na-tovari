@@ -102,6 +102,8 @@ $uloga=$this->session->userdata('uloga');
 <h2>Добрoдојдовте, вие сте логирани како "<?php echo $uloga; ?>" </h2>
     
 <?php endif; ?>
+</div>
+</div>
 
 
 

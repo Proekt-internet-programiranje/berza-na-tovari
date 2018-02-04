@@ -15,7 +15,12 @@
 
 }
 </style>
+
+
+
+
 <body>
+
 <nav class="w3-sidebar w3-card w3-bar-block w3-collapse w3-medium w3-animate-left" id="mySidebar" style="background:#262626; color:white">
 
 <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hide-large" title="Close Menu">
@@ -36,6 +41,10 @@
         if (current_url()!=site_url('spedicija/prevoznici'))
         $this->view('footer'); ?>
     </div>
+
+
+
+
   <script>
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");
@@ -60,6 +69,8 @@ function w3_close() {
     overlayBg.style.display = "none";
 }
 </script>
+
+
 <div class="w3-main" style="margin-left:210px">
   <div class="w3-row w3-padding-10">
 <?php
@@ -72,3 +83,5 @@ $uloga=$this->session->userdata('uloga');
       <h2>Добрoдојдовте, вие сте логирани како "<?php echo $uloga; ?>" </h2>
     
 <?php endif; ?>
+</div>
+</div>
