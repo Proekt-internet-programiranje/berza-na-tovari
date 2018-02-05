@@ -64,19 +64,18 @@ function w3_close() {
 echo $output;
 $this->view('footer'); ?>
 
+</div>
+</div>
 
-
-<div class="w3-main" style="margin-left:210px">
-  <div class="w3-row w3-padding-10">
 <?php
 $currentURL = current_url();
 $uloga=$this->session->userdata('uloga');
 ?>
 <?php if ($currentURL==site_url('admin')) : ?>
 
-
-<h2 >Добрoдојдовте, вие сте логирани како "<?php echo $uloga; ?>" </h2>
-    
+<div class="w3-main" style="margin-left:210px">
+  <div class="w3-row w3-padding-10">
+<h2>Добрoдојдовте, вие сте логирани како "<?php echo $uloga; ?>" </h2>
+</div>
+</div>
 <?php endif; ?>
-</div>
-</div>
