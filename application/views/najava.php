@@ -26,7 +26,7 @@
       
       <div class="tab-content">
         <div id="login">   
-          <h1>Добредојде</h1>
+          <h1>Добрoдојде</h1>
           
           <form action="<?= site_url('najava') ?>" method="post">
           
